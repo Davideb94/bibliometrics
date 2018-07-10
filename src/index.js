@@ -9,17 +9,10 @@ class App extends React.Component {
     render() {
         return(
             <Router history={ browserHistory }>
-                <div>
-                    <ul>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/will-not-match">Will Not Match</Link></li>
-                    </ul>
-
-                    <Switch>
-                        <Route path="/" exact component={Home}/>
-                        <Route path="*" component={PageNotFound} />
-                    </Switch>
-                </div>
+                <Switch>
+                    <Route path="/" exact component={Home}/>
+                    <Route path="*" component={PageNotFound} />
+                </Switch>
             </Router>
         );
     }

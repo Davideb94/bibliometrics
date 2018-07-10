@@ -4,9 +4,15 @@ export default class App extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>Hello Bibliometrics</h1>
-            </div>);
+            <div id={ "home" }>
+                <div className={ "panel" }></div>
+
+                <div className={ "container" }>
+                    <aside></aside>
+                    <main></main>
+                </div>
+            </div>
+        );
     }
 
 }
