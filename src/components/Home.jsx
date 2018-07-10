@@ -1,9 +1,27 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Panel from './Panel.jsx';
 import Tile from './Tile.jsx';
 
 
 export default class Home extends React.Component {
+
+    constructor( props ){
+        super( props );
+
+        this.state = {
+            openPanel: false
+        }
+    }
+
+
+    onCallPanel(){
+
+        this.setState({
+            openPanel: !this.state.openPanel
+        });
+
+    }
 
     render() {
         return (
@@ -12,27 +30,11 @@ export default class Home extends React.Component {
                     <aside>
                     </aside>
 
-                    <Panel/>
+                    <Panel className={ this.state.openPanel ? 'swipe_in_right': null }  />
 
                     <main>
                         <ul className={ "list_wrapper" }>
-                            <Tile/>
-                            <Tile/>
-                            <Tile/>
-                            <Tile/>
-                            <Tile/>
-                            <Tile/>
-                            <Tile/>
-                            <Tile/>
-                            <Tile/>
-                            <Tile/>
-                            <Tile/>
-                            <Tile/>
-                            <Tile/>
-                            <Tile/>
-                            <Tile/>
-                            <Tile/>
-                            <Tile/>
+                            <Tile callPanel={ this.onCallPanel.bind(this) } />
                         </ul>
                     </main>
                 </div>

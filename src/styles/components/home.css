@@ -42,20 +42,20 @@ main .list_wrapper{
 @media screen and ( max-width: 800px ) {
 
     #home{
-        width: 800px;
+        width: 900px;
     }
 
     .main_container{
-        width: 800px;
+        width: 900px;
     }
 
     main{
-        width: 500px;
+        width: 600px;
     }
 
 }
 
-@media screen and ( max-height: 600px ) {
+@media screen and ( max-height: 500px ) {
 
     #home{
         height: 600px;

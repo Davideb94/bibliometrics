@@ -1,20 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
 export default class Tile extends React.Component {
 
-    onTileClick(){
-
-        console.log("[tile]: CLICKED!");
-
-    }
-
     render() {
         return (
-            <li onClick={ this.onTileClick } className={ "tile" }>
+            <li onClick={ this.props.callPanel } className={ "tile" }>
 
             </li>
         );
     }
+
+}
+
+Tile.propTypes = {
+
+    openPanel: PropTypes.func
 
 }

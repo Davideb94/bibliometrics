@@ -1,1 +1,9 @@
 /**A nav drawer opens over 250ms, and closes over 200ms.**/
+
+.swipe_in_right{
+
+    left: 0 !important;
+    transition: left 250ms !important;
+    transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1) !important;
+
+}
