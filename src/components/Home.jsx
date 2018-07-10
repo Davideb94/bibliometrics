@@ -8,8 +8,12 @@ export default class App extends React.Component {
                 <div className={ "panel" }></div>
 
                 <div className={ "container" }>
-                    <aside></aside>
-                    <main></main>
+                    <aside>
+                        <p>here is sidenav</p>
+                    </aside>
+                    <main>
+                        <p>here is main</p>
+                    </main>
                 </div>
             </div>
         );
