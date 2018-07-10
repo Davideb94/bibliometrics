@@ -1,0 +1,26 @@
+#home{
+
+    height: 100%;
+    width: 100%;
+    background: var( --theme-light-grey );
+    z-index: 1;
+
+}
+
+aside{
+
+    height: 100%;
+    width: 300px;
+    background: var( --theme-grey );
+    box-shadow: var( --shadow-4 );
+    z-index: 100;
+
+}
+
+main{
+
+    height: 100%;
+    width: calc( 100% - 300px );
+    z-index: 10;
+
+}

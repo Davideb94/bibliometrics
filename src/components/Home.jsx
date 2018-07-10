@@ -1,21 +1,22 @@
 import React from 'react';
+import Panel from './Panel.jsx';
+
 
 export default class App extends React.Component {
 
     render() {
         return (
-            <div id={ "home" }>
-                <div className={ "panel" }></div>
-
+            <section id={ "home" } className={ "container" }>
                 <div className={ "container" }>
                     <aside>
-                        <p>here is sidenav</p>
                     </aside>
+
+                    <Panel/>
+
                     <main>
-                        <p>here is main</p>
                     </main>
                 </div>
-            </div>
+            </section>
         );
     }
 
