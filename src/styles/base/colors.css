@@ -1,0 +1,24 @@
+/** Theme **/
+
+:root {
+
+    --theme-light-grey: #F5F5F5;
+    --theme-grey: #424242;
+    --theme-dark-grey: #303030;
+
+}
+
+/** Interactions **/
+
+:root {
+
+    --interactions-light-grey: #E0E0E0;
+    --interactions-grey: #545454;
+
+    --interactions-blue: #0091EA;
+    --interactions-yellow: #FFCC80;
+    --interactions-pink: #F48FB1;
+    --interactions-violet: #B39DDB;
+}
+
+/** User Messages **/

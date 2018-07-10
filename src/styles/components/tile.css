@@ -1,0 +1,35 @@
+.tile{
+
+    height: 100px;
+    width: 60%;
+    margin-bottom: 10px;
+    background: #FFF;
+    border-radius: 5px;
+    box-shadow: var( --shadow-1 );
+    transition: height, width 75ms;
+    transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+
+}
+
+.tile:hover{
+
+    height: 110px;
+    width: 62%;
+    box-shadow: var( --shadow-2 );
+    transition: height, width 170ms;
+    transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+    cursor: pointer;
+
+}
+
+@media screen and ( max-width: 1000px ) {
+
+    .tile{
+        width: 450px;
+    }
+
+    .tile:hover{
+        width: 459px;
+    }
+
+}
