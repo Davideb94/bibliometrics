@@ -14,10 +14,10 @@ export default class Home extends React.Component {
     }
 
 
-    _onCallPanel(){
+    _onOpenPanel(){
 
         this.setState({
-            openPanel: !this.state.openPanel
+            openPanel: true
         });
 
     }
@@ -33,14 +33,11 @@ export default class Home extends React.Component {
 
                     <main>
                         <ul className={ "list_wrapper" }>
-                            <Tile callPanel={ this._onCallPanel.bind(this) } />
-                            <Tile callPanel={ this._onCallPanel.bind(this) } />
-                            <Tile callPanel={ this._onCallPanel.bind(this) } />
-                            <Tile callPanel={ this._onCallPanel.bind(this) } />
-                            <Tile callPanel={ this._onCallPanel.bind(this) } />
-                            <Tile callPanel={ this._onCallPanel.bind(this) } />
-                            <Tile callPanel={ this._onCallPanel.bind(this) } />
-                            <Tile callPanel={ this._onCallPanel.bind(this) } />
+                            <Tile openPanel={ this._onOpenPanel.bind(this) } />
+                            <Tile openPanel={ this._onOpenPanel.bind(this) } />
+                            <Tile openPanel={ this._onOpenPanel.bind(this) } />
+                            <Tile openPanel={ this._onOpenPanel.bind(this) } />
+                            <Tile openPanel={ this._onOpenPanel.bind(this) } />
                         </ul>
                     </main>
                 </div>
