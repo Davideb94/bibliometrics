@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Panel from './Panel.jsx';
 import Tile from './Tile.jsx';
 
@@ -15,7 +14,7 @@ export default class Home extends React.Component {
     }
 
 
-    onCallPanel(){
+    _onCallPanel(){
 
         this.setState({
             openPanel: !this.state.openPanel
@@ -34,7 +33,14 @@ export default class Home extends React.Component {
 
                     <main>
                         <ul className={ "list_wrapper" }>
-                            <Tile callPanel={ this.onCallPanel.bind(this) } />
+                            <Tile callPanel={ this._onCallPanel.bind(this) } />
+                            <Tile callPanel={ this._onCallPanel.bind(this) } />
+                            <Tile callPanel={ this._onCallPanel.bind(this) } />
+                            <Tile callPanel={ this._onCallPanel.bind(this) } />
+                            <Tile callPanel={ this._onCallPanel.bind(this) } />
+                            <Tile callPanel={ this._onCallPanel.bind(this) } />
+                            <Tile callPanel={ this._onCallPanel.bind(this) } />
+                            <Tile callPanel={ this._onCallPanel.bind(this) } />
                         </ul>
                     </main>
                 </div>
