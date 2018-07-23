@@ -63,6 +63,7 @@ export default class Home extends React.Component {
             openPanel: false,
             selected_auth: null
         });
+        this.panel.current._onShowCoAuthors();
 
     }
 
