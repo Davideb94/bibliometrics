@@ -5,6 +5,7 @@
     --theme-light-grey: #F5F5F5;
     --theme-grey: #424242;
     --theme-dark-grey: #303030;
+    --theme-extra-dark-grey: #212121;
 
 }
 
@@ -15,6 +16,7 @@
     --interactions-light-grey: #E0E0E0;
     --interactions-grey: #545454;
 
+    --interactions-light-blue: #40C4FF;
     --interactions-blue: #0091EA;
     --interactions-yellow: #FFCC80;
     --interactions-pink: #F48FB1;

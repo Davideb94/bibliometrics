@@ -3,10 +3,16 @@ import LocalizedStrings from 'react-localization';
 const dictionary = new LocalizedStrings({
 
     en:{
-        foo: 'Some text in english'
+        show_co_authors: 'Show co-authors',
+        hide_co_authors: 'Hide co-authors',
+        authors: 'AUTHORS',
+        publications: 'PUBLICATIONS'
     },
     it:{
-        foo: 'Un testo in italiano'
+        show_co_authors: 'Mostra co-autori',
+        hide_co_authors: 'Nascondi co-autori',
+        authors: 'AUTORI',
+        publications: 'PUBLICAZIONI'
     }
 
 });
