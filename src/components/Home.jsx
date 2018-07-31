@@ -5,6 +5,7 @@ import tilesFactory from '../tilesFactory.jsx';
 
 import dictionary from '../dictionary.js';
 import consts from '../consts.js';
+import model from '../model.js'
 
 
 export default class Home extends React.Component {
@@ -19,34 +20,8 @@ export default class Home extends React.Component {
 
         this.panel = React.createRef();
         this.tilesFactory = new tilesFactory( this._onOpenPanel, this );
+        this.model = model;
 
-        //-- MODEL --//
-        this._authors = {
-
-            type: consts.TILE_TYPE_AUTHORS,
-            items: [
-                {id: 1},
-                {id: 2},
-                {id: 3},
-                {id: 4},
-                {id: 5},
-                {id: 6},
-                {id: 7}
-            ]
-
-        };
-
-
-        this._publications = {
-
-            type: consts.TILE_TYPE_PUBLICATIONS,
-            items: [
-                {id: 1},
-                {id: 2},
-                {id: 3}
-            ]
-
-        };
 
         this.state = {
 
@@ -153,10 +128,10 @@ export default class Home extends React.Component {
                             </div>
                         </header>
                         <ul id={ 'authors_list' } className={ this.state.active_tab ? "list_wrapper hide" : "list_wrapper" }>
-                            { this._renderTiles(this._authors) }
+                            { this._renderTiles(this.model._authors) }
                         </ul>
                         <ul id={ 'publications_list' } className={ this.state.active_tab ? "list_wrapper" : "list_wrapper hide" }>
-                            { this._renderTiles(this._publications) }
+                            { this._renderTiles(this.model._publications) }
                         </ul>
                     </main>
                 </div>
