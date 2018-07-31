@@ -9,6 +9,9 @@ export default class Tile extends React.Component {
         super( props );
 
         this.state = {
+            //-- UI INFO --//
+
+            //-- MODEL DATA --//
             id: this.props.id
         }
     }

@@ -6,7 +6,11 @@ export default class Panel extends React.Component {
         super( props );
 
         this.state = {
+
+            //-- UI INFO --//
             showCoAuthors: false
+
+            //-- MODEL DATA --//
         }
 
     }

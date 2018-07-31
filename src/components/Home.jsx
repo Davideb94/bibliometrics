@@ -12,10 +12,13 @@ export default class Home extends React.Component {
         this.panel = React.createRef();
 
         this.state = {
+
+            //-- UI INFO --//
             active_tab: 0,
             openPanel: false,
             show_co_authors: false,
 
+            //-- MODEL DATA --//
             selected_auth: null
         }
     }
