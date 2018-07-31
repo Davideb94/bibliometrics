@@ -6,19 +6,23 @@ import PropTypes from 'prop-types';
 export default class Publication extends React.Component {
 
     constructor( props ){
+
         super( props );
+        this.id = this.props.id;
 
-        this.state = {
-            //-- UI INFO --//
-
-            //-- MODEL DATA --//
-            id: this.props.id
-        }
     }
 
     render() {
+
+        let _openPublication = () => {
+
+            let id = this.id;
+            console.log( 'opening publication: ' + id );
+
+        }
+
         return (
-            <li onClick={ () => {this.props.openPanel( this.state.id )} } className={ "tile" }>
+            <li onClick={ _openPublication } className={ "tile" }>
 
             </li>
         );
@@ -27,8 +31,5 @@ export default class Publication extends React.Component {
 }
 
 Publication.propTypes = {
-
     id: PropTypes.number, //may be temporary
-    openPanel: PropTypes.func
-
 }

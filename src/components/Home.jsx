@@ -1,16 +1,52 @@
 import React from 'react';
+
 import Panel from './Panel.jsx';
-import Author from './Author.jsx';
-import Pubblication from './Publication.jsx';
+import tilesFactory from '../tilesFactory.jsx';
+
 import dictionary from '../dictionary.js';
+import consts from '../consts.js';
 
 
 export default class Home extends React.Component {
 
+    /***************************
+
+         C O N S T R U C T O R
+
+     ****************************/
     constructor( props ){
         super( props );
 
         this.panel = React.createRef();
+        this.tilesFactory = new tilesFactory( this._onOpenPanel, this );
+
+        //-- MODEL --//
+        this._authors = {
+
+            type: consts.TILE_TYPE_AUTHORS,
+            items: [
+                {id: 1},
+                {id: 2},
+                {id: 3},
+                {id: 4},
+                {id: 5},
+                {id: 6},
+                {id: 7}
+            ]
+
+        };
+
+
+        this._publications = {
+
+            type: consts.TILE_TYPE_PUBLICATIONS,
+            items: [
+                {id: 1},
+                {id: 2},
+                {id: 3}
+            ]
+
+        };
 
         this.state = {
 
@@ -23,6 +59,12 @@ export default class Home extends React.Component {
             selected_auth: null
         }
     }
+
+    /***************************
+
+       M E T H O D S
+
+     ****************************/
 
     _onTabClick( tab ){
 
@@ -71,7 +113,23 @@ export default class Home extends React.Component {
 
     }
 
+    _renderTiles( data ){
+
+        let list = data.items.map(
+            ( item ) => this.tilesFactory.build( data.type, item )
+        );
+        return list;
+
+    }
+
+    /***************************
+
+        R E N D E R    M E T H O D
+
+     ****************************/
+
     render() {
+
         return (
             <section id={ "home" } className={ "container" }>
                 <div className={ "container main_container" }>
@@ -94,16 +152,11 @@ export default class Home extends React.Component {
                                 <p> {dictionary.publications} </p>
                             </div>
                         </header>
-                        <ul className={ this.state.active_tab ? "list_wrapper hide" : "list_wrapper" }>
-                            <Author id={1} openPanel={ this._onOpenPanel.bind(this) } />
-                            <Author id={2} openPanel={ this._onOpenPanel.bind(this) } />
-                            <Author id={3} openPanel={ this._onOpenPanel.bind(this) } />
-                            <Author id={4} openPanel={ this._onOpenPanel.bind(this) } />
-                            <Author id={5} openPanel={ this._onOpenPanel.bind(this) } />
+                        <ul id={ 'authors_list' } className={ this.state.active_tab ? "list_wrapper hide" : "list_wrapper" }>
+                            { this._renderTiles(this._authors) }
                         </ul>
-                        <ul className={ this.state.active_tab ? "list_wrapper" : "list_wrapper hide" }>
-                            <Pubblication id={1} openPanel={ this._onOpenPanel.bind(this) } />
-                            <Pubblication id={2} openPanel={ this._onOpenPanel.bind(this) } />
+                        <ul id={ 'publications_list' } className={ this.state.active_tab ? "list_wrapper" : "list_wrapper hide" }>
+                            { this._renderTiles(this._publications) }
                         </ul>
                     </main>
                 </div>

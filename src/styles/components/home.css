@@ -82,6 +82,7 @@ main header{
     position: absolute;
     top: 0;
     left: 300px;
+    background: var( --theme-light-grey );
     z-index: 11;
 
 }
