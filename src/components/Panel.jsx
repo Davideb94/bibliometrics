@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 
 export default class Panel extends React.Component {
 
@@ -35,5 +36,12 @@ export default class Panel extends React.Component {
             </section>
         );
     }
+
+}
+
+Panel.propTypes = {
+
+    selected_auth: PropTypes.number,
+    update_show_co_authors: PropTypes.func
 
 }

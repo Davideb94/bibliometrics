@@ -27,5 +27,8 @@ export default class Tile extends React.Component {
 }
 
 Tile.propTypes = {
+
+    id: PropTypes.number, //may be temporary
     openPanel: PropTypes.func
+
 }
