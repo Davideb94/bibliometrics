@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 
 
-export default class Tile extends React.Component {
+export default class Publication extends React.Component {
 
     constructor( props ){
         super( props );
@@ -26,7 +26,7 @@ export default class Tile extends React.Component {
 
 }
 
-Tile.propTypes = {
+Publication.propTypes = {
 
     id: PropTypes.number, //may be temporary
     openPanel: PropTypes.func

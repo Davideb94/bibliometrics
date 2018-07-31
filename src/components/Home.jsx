@@ -1,6 +1,7 @@
 import React from 'react';
 import Panel from './Panel.jsx';
-import Tile from './Tile.jsx';
+import Author from './Author.jsx';
+import Pubblication from './Publication.jsx';
 import dictionary from '../dictionary.js';
 
 
@@ -94,15 +95,15 @@ export default class Home extends React.Component {
                             </div>
                         </header>
                         <ul className={ this.state.active_tab ? "list_wrapper hide" : "list_wrapper" }>
-                            <Tile id={1} openPanel={ this._onOpenPanel.bind(this) } />
-                            <Tile id={2} openPanel={ this._onOpenPanel.bind(this) } />
-                            <Tile id={3} openPanel={ this._onOpenPanel.bind(this) } />
-                            <Tile id={4} openPanel={ this._onOpenPanel.bind(this) } />
-                            <Tile id={5} openPanel={ this._onOpenPanel.bind(this) } />
+                            <Author id={1} openPanel={ this._onOpenPanel.bind(this) } />
+                            <Author id={2} openPanel={ this._onOpenPanel.bind(this) } />
+                            <Author id={3} openPanel={ this._onOpenPanel.bind(this) } />
+                            <Author id={4} openPanel={ this._onOpenPanel.bind(this) } />
+                            <Author id={5} openPanel={ this._onOpenPanel.bind(this) } />
                         </ul>
                         <ul className={ this.state.active_tab ? "list_wrapper" : "list_wrapper hide" }>
-                            <Tile id={1} openPanel={ this._onOpenPanel.bind(this) } />
-                            <Tile id={2} openPanel={ this._onOpenPanel.bind(this) } />
+                            <Pubblication id={1} openPanel={ this._onOpenPanel.bind(this) } />
+                            <Pubblication id={2} openPanel={ this._onOpenPanel.bind(this) } />
                         </ul>
                     </main>
                 </div>
