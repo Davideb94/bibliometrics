@@ -4,7 +4,6 @@ import Panel from './Panel.jsx';
 import tilesFactory from '../tilesFactory.jsx';
 
 import dictionary from '../dictionary.js';
-import consts from '../consts.js';
 import model from '../model.js'
 
 
@@ -66,7 +65,7 @@ export default class Home extends React.Component {
     }
 
     _onShowCoAuthors(){
-            this.panel.current._onShowCoAuthors();
+        this.panel.current._onShowCoAuthors();
     }
 
     _onOpenPanel( id ){
@@ -84,7 +83,10 @@ export default class Home extends React.Component {
             openPanel: false,
             selected_auth: null
         });
-        this.panel.current._onShowCoAuthors();
+
+        if( this.state.show_co_authors ){
+            this.panel.current._onShowCoAuthors();
+        }
 
     }
 
