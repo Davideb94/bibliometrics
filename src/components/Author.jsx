@@ -50,6 +50,11 @@ export default class Author extends React.Component {
                 <div className={ 'right_holder' }>
                     <div className={ 'university_holder' }>
                         <p>{ this.university }</p>
+                        <div className={ this.state.isSpread ? 'publication_types spread' : 'publication_types' }>
+                            <img src={ this.image } />
+                            <img src={ this.image } />
+                            <img src={ this.image } />
+                        </div>
                     </div>
                 </div>
             </li>
