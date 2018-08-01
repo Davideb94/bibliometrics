@@ -1,0 +1,53 @@
+.tile.publication{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.tile.publication .left_holder{
+
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 10px;
+
+}
+
+.tile.publication .left_holder .title{
+
+    max-height: 100%;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+    font-size: 1em;
+    color: rgba( 0, 0, 0, 0.8 );
+
+}
+
+.tile.publication .right_holder{
+
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 10px;
+
+}
+
+.tile.publication .right_holder .author{
+
+    max-height: 100%;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+    font-size: 0.8em;
+    text-align: right;
+    color: rgba( 0, 0, 0, 0.5 );
+
+}
