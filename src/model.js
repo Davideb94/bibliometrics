@@ -58,9 +58,22 @@ const model = {
 
         type: consts.TILE_TYPE_PUBLICATIONS,
         items: [
-            {id: 1},
-            {id: 2},
-            {id: 3}
+            {
+                id: 1,
+                title: 'Gamified Design Efficiency into Universities e-courses',
+                author: 'Mauro Gabrielli',
+            },
+            {
+                id: 2,
+                title: 'The relevance of Union Types',
+                author: 'Simone Di Giuseppe',
+            },
+            {
+                id: 3,
+                title: 'Normal forms monoids',
+                author: 'Maria Pronat',
+            },
+
         ]
 
     }
