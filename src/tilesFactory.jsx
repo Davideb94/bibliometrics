@@ -17,7 +17,7 @@ export default class tilesFactory {
 
         switch ( type ) {
             case consts.TILE_TYPE_AUTHORS:
-                return <Author id={ item.id } openPanel={ this.openPanel.bind(this.home_self) } />;
+                return <Author id={ item.id } name={ item.name } university={ item.university } image={ item.image } openPanel={ this.openPanel.bind(this.home_self) } />;
 
             case consts.TILE_TYPE_PUBLICATIONS:
                 return <Publication id={ item.id } />;

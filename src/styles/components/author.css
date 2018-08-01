@@ -1,0 +1,90 @@
+.tile.author{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.tile.author .left_holder{
+
+    height: 100%;
+    width: 50%;
+    display: flex;
+
+}
+
+.tile.author .right_holder{
+
+    height: 100%;
+    width: 50%;
+    display: flex;
+
+}
+
+.tile.author .img_holder{
+
+    height: 100%;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    overflow: hidden;
+
+}
+
+.tile.author .img_holder img{
+
+    height: 50px;
+    width: auto;
+
+}
+
+.tile.author .name_holder{
+
+    height: 100%;
+    width: calc(100% - 95px );
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+}
+
+.tile.author .name_holder p{
+
+    max-height: 100%;
+    max-width: 100%;
+    margin: 0;
+    text-align: left;
+    font-size: 1em;
+    color: rgba( 0, 0, 0, 0.8 );
+    overflow: hidden;
+
+}
+
+.tile.author .university_holder{
+
+    height: 100%;
+    width: calc( 100% - 40px );
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0 20px;
+
+}
+
+.tile.author .university_holder p{
+
+    max-height: 100%;
+    max-width: 100%;
+    margin: 0;
+    text-align: right;
+    font-size: 0.8em;
+    color: rgba( 0, 0, 0, 0.5 );
+    overflow: hidden;
+
+}
+
