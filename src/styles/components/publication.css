@@ -10,7 +10,7 @@
 .tile.publication .left_holder{
 
     height: 100%;
-    width: 50%;
+    width: calc( 50% - 20px );
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -32,7 +32,7 @@
 .tile.publication .right_holder{
 
     height: 100%;
-    width: 50%;
+    width: calc( 50% - 20px );
     display: flex;
     justify-content: flex-end;
     align-items: center;
