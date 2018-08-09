@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import consts from '../consts.js';
 
 
@@ -58,6 +59,7 @@ export default class Author extends React.Component {
                     </div>
                 </div>
                 <div onClick={ () => {this.props.openPanel( this.id )} } className={ this.state.isSpread ? 'button_open_panel spread' : 'button_open_panel' }>
+                    <img src={ consts.IMG_RIGHT_ARROW } />
                 </div>
             </li>
         );
