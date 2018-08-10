@@ -8,16 +8,15 @@ export default class SearchPanel extends React.Component {
         super( props );
 
         this.input = null;
+        this.updateHomeKeyword = this.props.updateKeyword;
+
         this.state = {
             keyword: null
         }
     }
 
     componentDidMount(){
-
         this.input = document.getElementById( 'input_search' );
-
-
     }
 
     giveFocus(){
@@ -30,10 +29,9 @@ export default class SearchPanel extends React.Component {
             keyword: this.input.value
         });
 
-        console.log( '[SearchPanel] input value: ' + this.input.value );
         window.setTimeout( () => {
-            console.log( '[SearchPanel] keyword: ' + this.state.keyword );
-        }, 500 );
+            this.updateHomeKeyword( this.state.keyword );
+        }, 50 );
 
     }
 

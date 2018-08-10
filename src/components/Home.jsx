@@ -34,7 +34,8 @@ export default class Home extends React.Component {
             openSearch: false,
 
             //-- MODEL DATA --//
-            selected_auth: null
+            selected_auth: null,
+            keyword: null
         }
     }
 
@@ -43,6 +44,15 @@ export default class Home extends React.Component {
        M E T H O D S
 
      ****************************/
+
+
+    updateKeyword( keyword ){
+
+        this.setState({
+            keyword: keyword
+        });
+
+    }
 
     _onTabClick( tab ){
 
@@ -127,7 +137,7 @@ export default class Home extends React.Component {
                     <aside>
                         <div onClick={ this._onOpenSearch.bind(this) } className={ 'search' }>
                             <img src={ consts.IMG_SEARCH } />
-                            <p>{ dictionary.search }</p>
+                            <p>{ this.state.keyword ? this.state.keyword : dictionary.search }</p>
                         </div>
                         <div className={this.state.openPanel ? 'open_auth' : 'open_auth hide'}>
                             <p onClick={ this._onShowCoAuthors.bind(this) }> {this.state.show_co_authors ? dictionary.hide_co_authors :  dictionary.show_co_authors} </p>
@@ -138,7 +148,7 @@ export default class Home extends React.Component {
 
                     <Panel ref={this.panel} className={ this.state.openPanel ? 'swipe_in_right': null } selected_auth={ this.state.selected_auth } update_show_co_authors={this._updateShowCoAuthors.bind(this)} />
 
-                    <SearchPanel ref={this.input} className={ this.state.openSearch ? 'layer_fade_in search_panel' : 'search_panel' } />
+                    <SearchPanel ref={this.input} className={ this.state.openSearch ? 'layer_fade_in search_panel' : 'search_panel' } updateKeyword={ this.updateKeyword.bind(this) } />
 
                     <main>
                         <header>
