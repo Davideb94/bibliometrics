@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import dictionary from '../dictionary.js';
+import model from '../model.js';
 
 export default class Panel extends React.Component {
 
@@ -11,10 +12,11 @@ export default class Panel extends React.Component {
         this.state = {
 
             //-- UI INFO --//
-            showCoAuthors: false
+            showCoAuthors: false,
 
-            //-- MODEL DATA --//
-        }
+        };
+
+        this.model = model;
 
     }
 
@@ -31,15 +33,18 @@ export default class Panel extends React.Component {
 
         console.log( 'Panel.render, selected_auth: ' );
         console.log( this.props.selected_auth );
+        console.log( '[panel] author_name: ' + this.props.name );
+        console.log( '[panel] author_university: ' + this.props.university );
 
         return (
+
             <section id={ 'panel' } className={ this.props.className }>
                 <div className={ this.state.showCoAuthors ? 'co_authors_layer open' : 'co_authors_layer' }></div>
 
                 <div className={ 'header' }>
                     <div className={ 'holder left' }>
-                        <p className={ 'name' }>Title</p>
-                        <p className={ 'university' }>Università Politecnica delle Marche</p>
+                        <p id={ 'name' } className={ 'name' }>{ this.props.name }</p>
+                        <p id={ 'university' } className={ 'university' }>{ this.props.university }</p>
                     </div>
                     <div className={ 'holder right' }>
                         <p className={ 'number_of_publications' }>45</p>
