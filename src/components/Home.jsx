@@ -2,6 +2,7 @@ import React from 'react';
 
 import Panel from './Panel.jsx';
 import tilesFactory from '../tilesFactory.jsx';
+import SearchPanel from './SearchPanel.jsx';
 
 import consts from '../consts.js';
 import dictionary from '../dictionary.js';
@@ -29,6 +30,7 @@ export default class Home extends React.Component {
             active_tab: 0,
             openPanel: false,
             show_co_authors: false,
+            openSearch: false,
 
             //-- MODEL DATA --//
             selected_auth: null
@@ -67,6 +69,14 @@ export default class Home extends React.Component {
 
     _onShowCoAuthors(){
         this.panel.current._onShowCoAuthors();
+    }
+
+    _onOpenSearch(){
+
+        this.setState({
+            openSearch: !this.state.openSearch
+        });
+
     }
 
     _onOpenPanel( id ){
@@ -112,7 +122,7 @@ export default class Home extends React.Component {
             <section id={ "home" } className={ "container" }>
                 <div className={ "container main_container" }>
                     <aside>
-                        <div className={ 'search' }>
+                        <div onClick={ this._onOpenSearch.bind(this) } className={ 'search' }>
                             <img src={ consts.IMG_SEARCH } />
                             <p>{ dictionary.search }</p>
                         </div>
@@ -124,6 +134,8 @@ export default class Home extends React.Component {
                     <section className={this.state.openPanel ? 'closing_layer' : 'closing_layer hide'} onClick={ this._onClosePanel.bind(this) }></section>
 
                     <Panel ref={this.panel} className={ this.state.openPanel ? 'swipe_in_right': null } selected_auth={ this.state.selected_auth } update_show_co_authors={this._updateShowCoAuthors.bind(this)} />
+
+                    <SearchPanel className={ this.state.openSearch ? 'layer_fade_in search_panel' : 'search_panel' } />
 
                     <main>
                         <header>

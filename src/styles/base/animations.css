@@ -5,3 +5,13 @@
     transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1) !important;
 
 }
+
+.layer_fade_in{
+
+    height: 100%  !important;
+    width: calc( 100% - 300px )  !important;
+    border-radius: 0  !important;
+    transition: height 150ms, width 150ms, border-radius 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+
+}
