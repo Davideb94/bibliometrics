@@ -6,10 +6,27 @@
     top: 0;
     left: 300px;
     border-radius: 0 0 50% 0;
-    background: rgba( 66, 66, 66, 0.8 );
+    background: rgba( 33, 33, 33, 0.8 );
     transition: height 100ms, width 100ms, border-radius 100ms;
     transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
     z-index: 50;
 
+}
+
+.search_panel input{
+
+    height: 40%;
+    width: calc( 100% - 50px );
+    padding-left: 50px;
+    font-size: 5em;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    color: rgba( 255, 255, 255, 1 );
+
+}
+
+.search_panel input:focus{
+    outline: none;
 }
 

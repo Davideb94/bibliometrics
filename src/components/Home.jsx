@@ -20,6 +20,7 @@ export default class Home extends React.Component {
         super( props );
 
         this.panel = React.createRef();
+        this.input = React.createRef();
         this.tilesFactory = new tilesFactory( this._onOpenPanel, this );
         this.model = model;
 
@@ -72,6 +73,8 @@ export default class Home extends React.Component {
     }
 
     _onOpenSearch(){
+
+        this.input.current.giveFocus();
 
         this.setState({
             openSearch: !this.state.openSearch
@@ -135,7 +138,7 @@ export default class Home extends React.Component {
 
                     <Panel ref={this.panel} className={ this.state.openPanel ? 'swipe_in_right': null } selected_auth={ this.state.selected_auth } update_show_co_authors={this._updateShowCoAuthors.bind(this)} />
 
-                    <SearchPanel className={ this.state.openSearch ? 'layer_fade_in search_panel' : 'search_panel' } />
+                    <SearchPanel ref={this.input} className={ this.state.openSearch ? 'layer_fade_in search_panel' : 'search_panel' } />
 
                     <main>
                         <header>

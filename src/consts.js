@@ -1,5 +1,6 @@
 const consts = {
 
+
     /* TILES */
     TILE_TYPE_AUTHORS: 'authors',
     TILE_TYPE_PUBLICATIONS: 'publications',
