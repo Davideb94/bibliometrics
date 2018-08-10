@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import consts from '../consts.js';
+import dictionary from '../dictionary.js';
 
 
 
@@ -42,11 +43,23 @@ export default class Publication extends React.Component {
                     <p className={ 'title' }>
                         { this.title }
                     </p>
+                    <div className={ 'pubblication_type' }>
+                        <div className={ 'chip' }>
+                            <p>
+                                { dictionary.article }
+                            </p>
+                        </div>
+                    </div>
                 </div>
                 <div className={ 'right_holder' }>
                     <p className={ 'author' }>
                         { this.author }
                     </p>
+                    <div className={ 'source' }>
+                        <span>
+                            <p>2012, Newspaper X</p>
+                        </span>
+                    </div>
                 </div>
                 <div onClick={ _openPublication } className={ this.state.isSpread ? 'button_open_publication spread' : 'button_open_publication' }>
                     <img src={ consts.IMG_RIGHT_ARROW } />
