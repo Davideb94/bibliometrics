@@ -31,9 +31,46 @@ aside{
 
     height: 100%;
     width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
     background: var( --theme-grey );
     box-shadow: var( --shadow-4 );
     z-index: 100;
+
+}
+
+aside .search{
+
+    width: calc( 100% - 40px );
+    display: flex;
+    align-items: center;
+    padding: 20px 20px;
+    background: rgba( 97, 97, 97, 1 );
+
+}
+
+aside .search:hover{
+
+    background: rgba( 97, 97, 97, 0.8 );
+    cursor: pointer;
+
+}
+
+aside .search img{
+
+    height: 15px;
+    margin-right: 15px;
+    opacity: 0.8;
+
+}
+
+aside .search p{
+
+    margin: 0;
+    font-size: 1em;
+    color: rgba( 255, 255, 255, 0.8 );
 
 }
 

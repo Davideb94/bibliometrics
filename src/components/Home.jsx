@@ -3,6 +3,7 @@ import React from 'react';
 import Panel from './Panel.jsx';
 import tilesFactory from '../tilesFactory.jsx';
 
+import consts from '../consts.js';
 import dictionary from '../dictionary.js';
 import model from '../model.js'
 
@@ -111,6 +112,10 @@ export default class Home extends React.Component {
             <section id={ "home" } className={ "container" }>
                 <div className={ "container main_container" }>
                     <aside>
+                        <div className={ 'search' }>
+                            <img src={ consts.IMG_SEARCH } />
+                            <p>{ dictionary.search }</p>
+                        </div>
                         <div className={this.state.openPanel ? 'open_auth' : 'open_auth hide'}>
                             <p onClick={ this._onShowCoAuthors.bind(this) }> {this.state.show_co_authors ? dictionary.hide_co_authors :  dictionary.show_co_authors} </p>
                         </div>
