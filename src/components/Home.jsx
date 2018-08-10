@@ -35,8 +35,6 @@ export default class Home extends React.Component {
 
             //-- MODEL DATA --//
             selected_auth: null,
-            author_name: null,
-            author_university: null,
             keyword: null
         }
     }
@@ -46,35 +44,6 @@ export default class Home extends React.Component {
        M E T H O D S
 
      ****************************/
-
-
-    _getCurrentAuthorName( id ){
-
-        let name = undefined;
-
-        this.model._authors.items.forEach( (item) => {
-            if( item.id == id ){
-                name = item.name;
-            }
-        } );
-
-        return name;
-
-    };
-
-    _getCurrentAuthorUniversity( id ){
-
-        let university = undefined;
-
-        this.model._authors.items.forEach( (item) => {
-            if( item.id == id ){
-                university = item.university;
-            }
-        } );
-
-        return university;
-
-    };
 
     updateKeyword( keyword ){
 
@@ -122,15 +91,6 @@ export default class Home extends React.Component {
 
     }
 
-    _updatePanelData( id ){
-
-        this.setState({
-            author_name: this._getCurrentAuthorName( id ),
-            author_university: this._getCurrentAuthorUniversity( id )
-        });
-
-    }
-
     _onOpenPanel( id ){
 
         this.setState({
@@ -138,7 +98,7 @@ export default class Home extends React.Component {
             selected_auth: id
         });
 
-        this._updatePanelData( id );
+        this.panel.current._updatePanelData( id );
 
     }
 
@@ -187,7 +147,7 @@ export default class Home extends React.Component {
 
                     <section className={this.state.openPanel ? 'closing_layer' : 'closing_layer hide'} onClick={ this._onClosePanel.bind(this) }></section>
 
-                    <Panel ref={this.panel} className={ this.state.openPanel ? 'swipe_in_right': null } selected_auth={ this.state.selected_auth } update_show_co_authors={this._updateShowCoAuthors.bind(this)} name={ this.state.author_name } university={ this.state.author_university }/>
+                    <Panel ref={this.panel} className={ this.state.openPanel ? 'swipe_in_right': null } selected_auth={ this.state.selected_auth } update_show_co_authors={this._updateShowCoAuthors.bind(this)} />
 
                     <SearchPanel ref={this.input} className={ this.state.openSearch ? 'layer_fade_in search_panel' : 'search_panel' } updateKeyword={ this.updateKeyword.bind(this) } />
 

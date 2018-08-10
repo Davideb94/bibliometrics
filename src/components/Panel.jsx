@@ -14,9 +14,50 @@ export default class Panel extends React.Component {
             //-- UI INFO --//
             showCoAuthors: false,
 
+            //-- MODEL --//
+            name: null,
+            university: null
+
         };
 
         this.model = model;
+
+    }
+
+    _getCurrentAuthorName( id ){
+
+        let name = undefined;
+
+        this.model._authors.items.forEach( (item) => {
+            if( item.id == id ){
+                name = item.name;
+            }
+        } );
+
+        return name;
+
+    };
+
+    _getCurrentAuthorUniversity( id ){
+
+        let university = undefined;
+
+        this.model._authors.items.forEach( (item) => {
+            if( item.id == id ){
+                university = item.university;
+            }
+        } );
+
+        return university;
+
+    };
+
+    _updatePanelData( id ){
+
+        this.setState({
+            name: this._getCurrentAuthorName( id ),
+            university: this._getCurrentAuthorUniversity( id )
+        });
 
     }
 
@@ -31,11 +72,6 @@ export default class Panel extends React.Component {
 
     render() {
 
-        console.log( 'Panel.render, selected_auth: ' );
-        console.log( this.props.selected_auth );
-        console.log( '[panel] author_name: ' + this.props.name );
-        console.log( '[panel] author_university: ' + this.props.university );
-
         return (
 
             <section id={ 'panel' } className={ this.props.className }>
@@ -43,8 +79,8 @@ export default class Panel extends React.Component {
 
                 <div className={ 'header' }>
                     <div className={ 'holder left' }>
-                        <p id={ 'name' } className={ 'name' }>{ this.props.name }</p>
-                        <p id={ 'university' } className={ 'university' }>{ this.props.university }</p>
+                        <p id={ 'name' } className={ 'name' }>{ this.state.name }</p>
+                        <p id={ 'university' } className={ 'university' }>{ this.state.university }</p>
                     </div>
                     <div className={ 'holder right' }>
                         <p className={ 'number_of_publications' }>45</p>
