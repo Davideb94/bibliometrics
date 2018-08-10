@@ -3,7 +3,7 @@ const consts = {
 
     /* TILES */
     TILE_TYPE_AUTHORS: 'authors',
-    TILE_TYPE_PUBLICATIONS: 'publications',
+    TILE_TYPE_PUBLICATIONS: 'tab_publications',
 
     /* LOCALIZATION */
     it: 'it',

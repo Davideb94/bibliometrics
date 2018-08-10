@@ -6,17 +6,21 @@ const dictionary = new LocalizedStrings({
         show_co_authors: 'Show co-authors',
         hide_co_authors: 'Hide co-authors',
         authors: 'AUTHORS',
-        publications: 'PUBLICATIONS',
+        tab_publications: 'PUBLICATIONS',
         article: 'Article',
-        search: 'Search'
+        search: 'Search',
+        publications: 'publications'
+
     },
     it:{
         show_co_authors: 'Mostra co-autori',
         hide_co_authors: 'Nascondi co-autori',
         authors: 'AUTORI',
-        publications: 'PUBLICAZIONI',
+        tab_publications: 'PUBLICAZIONI',
         article: 'Articolo',
-        search: 'Cerca'
+        search: 'Cerca',
+        publications: 'publicazioni'
+
     }
 
 });

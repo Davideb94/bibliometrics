@@ -156,7 +156,7 @@ export default class Home extends React.Component {
                                 <p> {dictionary.authors} </p>
                             </div>
                             <div className={ this.state.active_tab ? "tab_btn active" : "tab_btn" } onClick={ () => {this._onTabClick( 1 )} }>
-                                <p> {dictionary.publications} </p>
+                                <p> {dictionary.tab_publications} </p>
                             </div>
                         </header>
                         <ul id={ 'authors_list' } className={ this.state.active_tab ? "list_wrapper hide" : "list_wrapper" }>
