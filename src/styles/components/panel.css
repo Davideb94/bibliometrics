@@ -5,8 +5,12 @@
     position: absolute;
     top: 0;
     left: -100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background: var( --theme-dark-grey );
     box-shadow: var( --shadow-3 );
+    overflow-y: auto;
     transition: left 200ms;
     transition-timing-function: cubic-bezier( 0.4, 0.0, 0.2, 1 );
     z-index: 50;
@@ -36,6 +40,7 @@
 
 .header{
 
+    min-height: 10%;
     width: calc( 100% - 390px );
     display: flex;
     flex-direction: row;
@@ -93,4 +98,39 @@
     color: rgba( 255, 255, 255, 0.6 );
     overflow: hidden;
 
+}
+
+#panel .body{
+
+    height: auto;
+    width: calc( 100% - 330px );
+    display: flex;
+    justify-content: center;
+    padding-left: 330px;
+    margin-top: 30px;
+
+}
+
+#panel .body ul{
+
+    height: auto;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+
+}
+
+#panel .body ul .tile.publication{
+    width: 100%;
+}
+
+#panel .body ul .tile.publication:hover{
+    width: 104%;
+}
+
+#panel .body ul .tile.publication.spread{
+    width: 104%;
 }

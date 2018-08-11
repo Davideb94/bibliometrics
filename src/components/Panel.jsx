@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import dictionary from '../dictionary.js';
 import model from '../model.js';
 
+import tilesFactory from '../tilesFactory.jsx';
+
 export default class Panel extends React.Component {
 
     constructor( props ){
@@ -21,6 +23,7 @@ export default class Panel extends React.Component {
         };
 
         this.model = model;
+        this.tilesFactory = new tilesFactory( null, null );
 
     }
 
@@ -70,6 +73,16 @@ export default class Panel extends React.Component {
 
     }
 
+    _renderTiles( data ){
+
+        console.log( '[Panel] _renderTiles: ' + data );
+        let list = data.items.map(
+            ( item ) => this.tilesFactory.build( data.type, item )
+        );
+        return list;
+
+    }
+
     render() {
 
         return (
@@ -88,6 +101,11 @@ export default class Panel extends React.Component {
                             {dictionary.publications}
                         </p>
                     </div>
+                </div>
+                <div className={ 'body' }>
+                    <ul>
+                        { this._renderTiles(this.model._publications) }
+                    </ul>
                 </div>
             </section>
         );
