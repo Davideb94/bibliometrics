@@ -85,6 +85,40 @@ aside .search p{
     z-index: 20;
 }
 
+aside .open_auth{
+
+    width: calc( 100% - 40px );
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px;
+    background: rgba( 97, 97, 97, 1 );
+
+}
+
+aside .open_auth:hover{
+
+    background: rgba( 97, 97, 97, 0.8 );
+    cursor: pointer;
+
+}
+
+aside .open_auth img{
+
+    height: 15px;
+    margin-right: 15px;
+    opacity: 0.8;
+
+}
+
+aside .open_auth p{
+
+    margin: 0;
+    font-size: 1em;
+    color: rgba( 255, 255, 255, 0.8 );
+
+}
+
 main{
 
     height: 100%;

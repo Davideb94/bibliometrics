@@ -136,12 +136,13 @@ export default class Home extends React.Component {
             <section id={ "home" } className={ "container" }>
                 <div className={ "container main_container" }>
                     <aside>
-                        <div onClick={ this._onOpenSearch.bind(this) } className={ 'search' }>
+                        <div onClick={ this._onOpenSearch.bind(this) } className={this.state.openPanel ? 'search hide' : 'search'}>
                             <img src={ consts.IMG_SEARCH } />
                             <p>{ this.state.keyword ? this.state.keyword : dictionary.search }</p>
                         </div>
-                        <div className={this.state.openPanel ? 'open_auth' : 'open_auth hide'}>
-                            <p onClick={ this._onShowCoAuthors.bind(this) }> {this.state.show_co_authors ? dictionary.hide_co_authors :  dictionary.show_co_authors} </p>
+                        <div onClick={ this._onShowCoAuthors.bind(this) } className={this.state.openPanel ? 'open_auth' : 'open_auth hide'}>
+                            <p> {this.state.show_co_authors ? dictionary.hide_co_authors :  dictionary.show_co_authors} </p>
+                            <img src={ consts.IMG_DOWN_ARROW } />
                         </div>
                     </aside>
 
