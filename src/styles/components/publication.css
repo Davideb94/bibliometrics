@@ -46,6 +46,7 @@
 
     max-height: 0;
     display: flex;
+    padding: 5px 0;
     transition: max-height 150ms cubic-bezier( 0.4, 0.0, 0.2, 1 );
 
 }
@@ -59,6 +60,9 @@
 
 .tile.publication .left_holder .pubblication_type .chip{
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-right: 5px;
     padding: 10px;
     border-radius: 20px;

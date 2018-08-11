@@ -134,3 +134,19 @@
 #panel .body ul .tile.publication.spread{
     width: 104%;
 }
+
+@media screen and ( max-width: 1050px ) {
+
+    #panel{
+        width: 900px;
+    }
+
+    .tile{
+        width: 450px !important;
+    }
+
+    .tile:hover{
+        width: 459px;
+    }
+
+}
