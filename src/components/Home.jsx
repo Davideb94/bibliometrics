@@ -1,4 +1,5 @@
 import React from 'react';
+import * as firebase from 'firebase';
 
 import Panel from './Panel.jsx';
 import tilesFactory from '../tilesFactory.jsx';
@@ -7,6 +8,7 @@ import SearchPanel from './SearchPanel.jsx';
 import consts from '../consts.js';
 import dictionary from '../dictionary.js';
 import model from '../model.js'
+import newModel from '../newModel.js';
 
 
 export default class Home extends React.Component {
@@ -23,6 +25,7 @@ export default class Home extends React.Component {
         this.input = React.createRef();
         this.tilesFactory = new tilesFactory( this._onOpenPanel, this );
         this.model = model;
+        this.newModel = new newModel();
 
 
         this.state = {
@@ -35,9 +38,11 @@ export default class Home extends React.Component {
 
             //-- MODEL DATA --//
             selected_auth: null,
-            keyword: null
+            keyword: null,
+
         }
     }
+
 
     /***************************
 
