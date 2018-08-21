@@ -12,7 +12,14 @@ const consts = {
     /* EVENTS */
 
     /* DATABASE */
-    FIREBASE_ROOT: 'bibliometrics-3fd89',
+    FIREBASE_CONNECTION: {
+        apiKey: "AIzaSyDgahb5PHrWRtW1xTXDrOckHE-9taazFQU",
+        authDomain: "bibliometrics-3fd89.firebaseapp.com",
+        databaseURL: "https://bibliometrics-3fd89.firebaseio.com",
+        projectId: "bibliometrics-3fd89",
+        storageBucket: "bibliometrics-3fd89.appspot.com",
+        messagingSenderId: "951744954569"
+    },
     TABLE_BIB: 'bib',
     TABLE_PERSONS: 'persons',
     TABLE_PUBS: 'pubs',

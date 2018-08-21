@@ -14,23 +14,14 @@ export default class newModel extends React.Component {
             loaded_publications: 10
         };
 
-        this._config = {
-            apiKey: "AIzaSyDgahb5PHrWRtW1xTXDrOckHE-9taazFQU",
-            authDomain: "bibliometrics-3fd89.firebaseapp.com",
-            databaseURL: "https://bibliometrics-3fd89.firebaseio.com",
-            projectId: "bibliometrics-3fd89",
-            storageBucket: "bibliometrics-3fd89.appspot.com",
-            messagingSenderId: "951744954569"
-        };
-
         this._authors = {
-                type: consts.TILE_TYPE_AUTHORS,
-                items: []
+            type: consts.TILE_TYPE_AUTHORS,
+            items: {}
         };
 
         this._publications = {
             type: consts.TILE_TYPE_PUBLICATIONS,
-            items: []
+            items: {}
         };
 
         this.init();
@@ -39,14 +30,30 @@ export default class newModel extends React.Component {
     init(){
 
         //here we'll set items in both _authors and _publications fields to the corresponding data fetched from firebase
+        this.connect();
 
-        //-- connect to firebase --//
-        firebase.initializeApp( this._config );
+        let authors = firebase.database().ref().child( consts.TABLE_PERSONS ).limitToFirst( this.state.loaded_authors );
+        authors.on( 'value', snap => {
+            this._authors.items = snap.val()
+        } );
 
-        console.log( '[newModel]: init' );
-        let name = firebase.database().ref().child( 'name' );
-        name.on( 'value', snap => console.log(snap.val()) );
+        let publications = firebase.database().ref().child( consts.TABLE_BIB ).limitToFirst( this.state.loaded_publications );
+        publications.on( 'value', snap => {
+            this._publications.items = snap.val()
+        } );
 
+        window.setTimeout( () => {
+            console.log( '[newModel]: init' );
+            console.log( this._authors.items );
+            console.log( this._publications.items );
+        }, 1000 );
+
+
+
+    }
+
+    connect(){
+        firebase.initializeApp( consts.FIREBASE_CONNECTION );
     }
 
     increaseLoadedAuthors(){
