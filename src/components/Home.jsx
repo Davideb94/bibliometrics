@@ -27,7 +27,6 @@ export default class Home extends React.Component {
         this.model = model;
         this.newModel = new newModel();
 
-
         this.state = {
 
             //-- UI INFO --//
@@ -39,9 +38,27 @@ export default class Home extends React.Component {
             //-- MODEL DATA --//
             selected_auth: null,
             keyword: null,
+            authors: this.newModel._authors,
+            publications: this.newModel._publications,
 
-        }
+        };
+
+        window.addEventListener( consts.EVENT_AUTHORS_CHANGE, () => {
+            this.updateAuthors( this.newModel._authors );
+        } );
+
+        window.addEventListener( consts.EVENT_PUBLICATIONS_CHANGE, () => {
+           this.updatePublications( this.newModel._publications );
+        } );
+
     }
+
+    /***************************
+
+     L I F E C Y C L E      M E T H O D S
+
+     ****************************/
+
 
 
     /***************************
@@ -49,6 +66,30 @@ export default class Home extends React.Component {
        M E T H O D S
 
      ****************************/
+
+    updateAuthors( authors ){
+
+            this.setState({
+                authors: authors
+            });
+
+            window.setTimeout( () =>{
+                console.log( '[Home] updateAuthors: ' );
+                console.log( this.state.authors );
+            }, 1000 );
+    }
+
+    updatePublications( pubs ){
+
+        this.setState({
+            publications: pubs
+        });
+
+        window.setTimeout( () =>{
+            console.log( '[Home] updatePublications: ' );
+            console.log( this.state.publications );
+        }, 1000 );
+    }
 
     updateKeyword( keyword ){
 

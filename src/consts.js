@@ -3,13 +3,15 @@ const consts = {
 
     /* TILES */
     TILE_TYPE_AUTHORS: 'authors',
-    TILE_TYPE_PUBLICATIONS: 'tab_publications',
+    TILE_TYPE_PUBLICATIONS: 'publications',
 
     /* LOCALIZATION */
     it: 'it',
     en: 'en',
 
     /* EVENTS */
+    EVENT_AUTHORS_CHANGE: 'authors_change',
+    EVENT_PUBLICATIONS_CHANGE: 'publications_change',
 
     /* DATABASE */
     FIREBASE_CONNECTION: {

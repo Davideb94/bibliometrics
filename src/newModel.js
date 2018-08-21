@@ -14,6 +14,9 @@ export default class newModel extends React.Component {
             loaded_publications: 10
         };
 
+        this.EVENT_AUTHORS_CHANGE = new Event( consts.EVENT_AUTHORS_CHANGE );
+        this.EVENT_PUBLICATIONS_CHANGE = new Event( consts.EVENT_PUBLICATIONS_CHANGE );
+
         this._authors = {
             type: consts.TILE_TYPE_AUTHORS,
             items: {}
@@ -29,26 +32,21 @@ export default class newModel extends React.Component {
 
     init(){
 
-        //here we'll set items in both _authors and _publications fields to the corresponding data fetched from firebase
+        //-- connect to firebase --//
         this.connect();
 
+        //-- fills fields with fetched data --//
         let authors = firebase.database().ref().child( consts.TABLE_PERSONS ).limitToFirst( this.state.loaded_authors );
         authors.on( 'value', snap => {
-            this._authors.items = snap.val()
+            this._authors.items = snap.val();
+            window.dispatchEvent( this.EVENT_AUTHORS_CHANGE );
         } );
 
         let publications = firebase.database().ref().child( consts.TABLE_BIB ).limitToFirst( this.state.loaded_publications );
         publications.on( 'value', snap => {
-            this._publications.items = snap.val()
+            this._publications.items = snap.val();
+            window.dispatchEvent( this.EVENT_PUBLICATIONS_CHANGE );
         } );
-
-        window.setTimeout( () => {
-            console.log( '[newModel]: init' );
-            console.log( this._authors.items );
-            console.log( this._publications.items );
-        }, 1000 );
-
-
 
     }
 
