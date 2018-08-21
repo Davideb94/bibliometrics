@@ -11,12 +11,12 @@ import PageNotFound from './components/PageNotFound.jsx';
 
 
 var config = {
-    apiKey: "AIzaSyD_GYwuLH1L6gijmIzTXKTQ7y8r5CI3_4o",
-    authDomain: "bibliometrics-d9806.firebaseapp.com",
-    databaseURL: "https://bibliometrics-d9806.firebaseio.com",
-    projectId: "bibliometrics-d9806",
-    storageBucket: "bibliometrics-d9806.appspot.com",
-    messagingSenderId: "732085926993"
+    apiKey: "AIzaSyA4_qPIO-z2jfWqE3IwecPqcUp8fS7Rko4",
+    authDomain: "bibliometrics-bc3df.firebaseapp.com",
+    databaseURL: "https://bibliometrics-bc3df.firebaseio.com",
+    projectId: "bibliometrics-bc3df",
+    storageBucket: "bibliometrics-bc3df.appspot.com",
+    messagingSenderId: "673481199121"
 };
 firebase.initializeApp(config);
 
