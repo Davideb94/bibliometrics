@@ -71,7 +71,8 @@ export default class Publication extends React.Component {
 }
 
 Publication.propTypes = {
-    id: PropTypes.number, //may be temporary
+    id: PropTypes.number,
     title: PropTypes.string,
-    author: PropTypes.string
+    author: PropTypes.string,
+    type: PropTypes.string
 }

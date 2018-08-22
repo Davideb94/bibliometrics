@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import dictionary from '../dictionary.js';
-import model from '../model.js';
 
 import tilesFactory from '../tilesFactory.jsx';
 
@@ -22,7 +21,6 @@ export default class Panel extends React.Component {
 
         };
 
-        this.model = model;
         this.switchAuthor = this.props.openPanel;
         this.home_self = this.props.homeSelf;
         this.tilesFactory = new tilesFactory( this.switchAuthor, this.home_self );
@@ -33,11 +31,11 @@ export default class Panel extends React.Component {
 
         let name = undefined;
 
-        this.model._authors.items.forEach( (item) => {
+        /*this.model._authors.items.forEach( (item) => {
             if( item.id == id ){
                 name = item.name;
             }
-        } );
+        } );*/
 
         return name;
 
@@ -47,11 +45,11 @@ export default class Panel extends React.Component {
 
         let university = undefined;
 
-        this.model._authors.items.forEach( (item) => {
+        /*this.model._authors.items.forEach( (item) => {
             if( item.id == id ){
                 university = item.university;
             }
-        } );
+        } );*/
 
         return university;
 
@@ -92,7 +90,7 @@ export default class Panel extends React.Component {
             <section id={ 'panel' } className={ this.props.className }>
                 <div className={ this.state.showCoAuthors ? 'co_authors_layer open' : 'co_authors_layer' }>
                     <ul className={ this.state.showCoAuthors ? 'co_authors_list fade_in' : 'co_authors_list' }>
-                        { this._renderTiles( this.model._authors ) }
+                        { /*this._renderTiles( this.model._authors )*/ }
                     </ul>
                 </div>
 
@@ -110,7 +108,7 @@ export default class Panel extends React.Component {
                 </div>
                 <div className={ 'body' }>
                     <ul>
-                        { this._renderTiles(this.model._publications) }
+                        { /*this._renderTiles(this.model._publications)*/ }
                     </ul>
                 </div>
             </section>

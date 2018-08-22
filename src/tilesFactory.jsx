@@ -13,14 +13,14 @@ export default class tilesFactory {
 
     }
 
-    build( type, item ) {
+    build( type, item_id, item ) {
 
         switch ( type ) {
             case consts.TILE_TYPE_AUTHORS:
-                return <Author id={ item.id } name={ item.name } university={ item.university } image={ item.image } openPanel={ this.openPanel.bind(this.home_self) } />;
+                return <Author id={ item_id } name={ item.name + ' ' + item.surname } university={ 'not specified' } image={ consts.IMG_DEFAULT_AUTHOR } openPanel={ this.openPanel.bind(this.home_self) } />;
 
             case consts.TILE_TYPE_PUBLICATIONS:
-                return <Publication id={ item.id } title={ item.title } author={ item.author }/>;
+                return <Publication id={ item_id } title={ item.title } author={ item.authors } type={ item.type }/>;
 
             default:
                 return undefined;

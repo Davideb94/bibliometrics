@@ -1,5 +1,4 @@
 import React from 'react';
-import * as firebase from 'firebase';
 
 import Panel from './Panel.jsx';
 import tilesFactory from '../tilesFactory.jsx';
@@ -7,7 +6,6 @@ import SearchPanel from './SearchPanel.jsx';
 
 import consts from '../consts.js';
 import dictionary from '../dictionary.js';
-import model from '../model.js'
 import newModel from '../newModel.js';
 
 
@@ -24,7 +22,6 @@ export default class Home extends React.Component {
         this.panel = React.createRef();
         this.input = React.createRef();
         this.tilesFactory = new tilesFactory( this._onOpenPanel, this );
-        this.model = model;
         this.newModel = new newModel();
 
         this.state = {
@@ -167,9 +164,15 @@ export default class Home extends React.Component {
 
     _renderTiles( data ){
 
-        let list = data.items.map(
-            ( item ) => this.tilesFactory.build( data.type, item )
-        );
+        let list = [];
+
+        for( let item in data.items ){
+            list.push( this.tilesFactory.build( data.type, item, data.items[item] ) );
+        }
+
+        console.log( '[Home] _renderTiles:' );
+        console.log( list );
+
         return list;
 
     }
@@ -212,10 +215,10 @@ export default class Home extends React.Component {
                             </div>
                         </header>
                         <ul id={ 'authors_list' } className={ this.state.active_tab ? "list_wrapper hide" : "list_wrapper" }>
-                            { this._renderTiles(this.model._authors) }
+                            { this._renderTiles(this.state.authors) }
                         </ul>
                         <ul id={ 'publications_list' } className={ this.state.active_tab ? "list_wrapper" : "list_wrapper hide" }>
-                            { this._renderTiles(this.model._publications) }
+                            { this._renderTiles(this.state.publications) }
                         </ul>
                     </main>
                 </div>
