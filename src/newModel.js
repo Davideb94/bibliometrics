@@ -9,13 +9,11 @@ export default class newModel extends React.Component {
     constructor( props ) {
         super(props);
 
-        this.state = {
-            loaded_authors: 10,
-            loaded_publications: 10
-        };
-
         this.EVENT_AUTHORS_CHANGE = new Event( consts.EVENT_AUTHORS_CHANGE );
         this.EVENT_PUBLICATIONS_CHANGE = new Event( consts.EVENT_PUBLICATIONS_CHANGE );
+
+        this.loaded_authors = 10;
+        this.loaded_publications = 10;
 
         this._authors = {
             type: consts.TILE_TYPE_AUTHORS,
@@ -32,17 +30,43 @@ export default class newModel extends React.Component {
 
     init(){
 
-        //-- connect to firebase --//
-        this.connect();
+        //-- _connect to firebase --//
+        this._connect();
 
         //-- fills fields with fetched data --//
-        let authors = firebase.database().ref().child( consts.TABLE_PERSONS ).limitToFirst( this.state.loaded_authors );
+        this._getAuthors();
+        this._getPublications();
+
+        //-- sets listeners --//
+        window.addEventListener( consts.EVENT_LOAD_AUTHORS, () => {
+            console.log( '[newModel] init: LOAD MORE AUTHORS!!!!!' );
+            this._increaseLoadedAuthors();
+        } );
+
+        window.addEventListener( consts.EVENT_LOAD_PUBLICATIONS, () => {
+            console.log( '[newModel] init: LOAD MORE PUBS!!!!!!!' );
+            this._increaseLoadedPublications();
+        } );
+
+    }
+
+    _connect(){
+        firebase.initializeApp( consts.FIREBASE_CONNECTION );
+    }
+
+    _getAuthors(){
+
+        let authors = firebase.database().ref().child( consts.TABLE_PERSONS ).limitToFirst( this.loaded_authors );
         authors.on( 'value', snap => {
             this._authors.items = snap.val();
             window.dispatchEvent( this.EVENT_AUTHORS_CHANGE );
         } );
 
-        let publications = firebase.database().ref().child( consts.TABLE_BIB ).limitToFirst( this.state.loaded_publications );
+    }
+
+    _getPublications(){
+
+        let publications = firebase.database().ref().child( consts.TABLE_BIB ).limitToFirst( this.loaded_publications );
         publications.on( 'value', snap => {
             this._publications.items = snap.val();
             window.dispatchEvent( this.EVENT_PUBLICATIONS_CHANGE );
@@ -50,24 +74,18 @@ export default class newModel extends React.Component {
 
     }
 
-    connect(){
-        firebase.initializeApp( consts.FIREBASE_CONNECTION );
-    }
+    _increaseLoadedAuthors(){
 
-    increaseLoadedAuthors(){
-
-        this.setState({
-            loaded_authors: this.state.loaded_authors + 10
-        });
+        this.loaded_authors = this.loaded_authors + 10;
+        this._getAuthors();
+        window.dispatchEvent( new Event(consts.EVENT_AUTHORS_CHANGE) );
 
     }
 
-    increaseLoadedPublications(){
-
-        this.setState({
-            loaded_publications: this.state.loaded_publications + 10
-        });
-
+    _increaseLoadedPublications(){
+        this.loaded_publications = this.loaded_publications + 10;
+        this._getPublications();
+        window.dispatchEvent( new Event(consts.EVENT_PUBLICATIONS_CHANGE) );
     }
 
 

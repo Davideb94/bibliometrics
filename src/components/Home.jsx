@@ -82,7 +82,7 @@ export default class Home extends React.Component {
         authors_holder.addEventListener( consts.EVENT_SCROLL, function() {
 
             if( authors_holder.offsetHeight + authors_holder.scrollTop - 95 - 15  >= authors_list.offsetHeight ){
-                console.log( '[Home] componentDidMount: authors bottom!!!!!!' );
+                window.dispatchEvent( new Event(consts.EVENT_LOAD_AUTHORS) );
             }
 
         });
@@ -90,7 +90,7 @@ export default class Home extends React.Component {
         publications_holder.addEventListener( consts.EVENT_SCROLL, function() {
 
             if ( publications_holder.offsetHeight + publications_holder.scrollTop - 95 - 15 >= publications_list.offsetHeight ) {
-                console.log('[Home] componentDidMount: publications bottom!!!!!!');
+                window.dispatchEvent( new Event(consts.EVENT_LOAD_PUBLICATIONS) );
             }
         });
 
@@ -108,10 +108,6 @@ export default class Home extends React.Component {
                 authors: authors
             });
 
-            window.setTimeout( () =>{
-                console.log( '[Home] updateAuthors: ' );
-                console.log( this.state.authors );
-            }, 1000 );
     }
 
     updatePublications( pubs ){
@@ -120,10 +116,6 @@ export default class Home extends React.Component {
             publications: pubs
         });
 
-        window.setTimeout( () =>{
-            console.log( '[Home] updatePublications: ' );
-            console.log( this.state.publications );
-        }, 1000 );
     }
 
     updateKeyword( keyword ){
@@ -207,9 +199,6 @@ export default class Home extends React.Component {
         for( let item in data.items ){
             list.push( this.tilesFactory.build( data.type, item, data.items[item] ) );
         }
-
-        console.log( '[Home] _renderTiles:' );
-        console.log( list );
 
         return list;
 

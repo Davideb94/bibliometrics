@@ -14,6 +14,8 @@ const consts = {
     //customs
     EVENT_AUTHORS_CHANGE: 'authors_change',
     EVENT_PUBLICATIONS_CHANGE: 'publications_change',
+    EVENT_LOAD_AUTHORS: 'event_load_authors',
+    EVENT_LOAD_PUBLICATIONS: 'event_load_publications',
 
     //native
     EVENT_SCROLL: 'scroll',
