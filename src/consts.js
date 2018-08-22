@@ -10,8 +10,13 @@ const consts = {
     en: 'en',
 
     /* EVENTS */
+
+    //customs
     EVENT_AUTHORS_CHANGE: 'authors_change',
     EVENT_PUBLICATIONS_CHANGE: 'publications_change',
+
+    //native
+    EVENT_SCROLL: 'scroll',
 
     /* DATABASE */
     FIREBASE_CONNECTION: {

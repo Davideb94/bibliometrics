@@ -56,7 +56,45 @@ export default class Home extends React.Component {
 
      ****************************/
 
+    componentDidMount(){
 
+        /*
+        $(".scrollpane").scroll(function() {
+        var $this = $(this);
+        var $results = $("#results");
+
+        if (!$results.data("loading")) {
+
+                if ($this.scrollTop() + $this.height() == $results.height()) {
+                    loadResults();
+                }
+            }
+        });
+         */
+
+        //-- detects when main scroll reaches the bottom of the page, then loads more contents
+        let authors_holder = document.getElementById( 'authors_holder' );
+        let publications_holder = document.getElementById( 'publications_holder' );
+
+        let authors_list = document.getElementById( 'authors_list' );
+        let publications_list = document.getElementById( 'publications_list' );
+
+        authors_holder.addEventListener( consts.EVENT_SCROLL, function() {
+
+            if( authors_holder.offsetHeight + authors_holder.scrollTop - 95 - 15  >= authors_list.offsetHeight ){
+                console.log( '[Home] componentDidMount: authors bottom!!!!!!' );
+            }
+
+        });
+
+        publications_holder.addEventListener( consts.EVENT_SCROLL, function() {
+
+            if ( publications_holder.offsetHeight + publications_holder.scrollTop - 95 - 15 >= publications_list.offsetHeight ) {
+                console.log('[Home] componentDidMount: publications bottom!!!!!!');
+            }
+        });
+
+    }
 
     /***************************
 
@@ -205,7 +243,7 @@ export default class Home extends React.Component {
 
                     <SearchPanel ref={this.input} className={ this.state.openSearch ? 'layer_fade_in search_panel' : 'search_panel' } updateKeyword={ this.updateKeyword.bind(this) } />
 
-                    <main>
+                    <main id={ 'main' }>
                         <header>
                             <div className={ this.state.active_tab ? "tab_btn" : "tab_btn active" } onClick={ () => {this._onTabClick( 0 )} }>
                                 <p> {dictionary.authors} </p>
@@ -214,12 +252,16 @@ export default class Home extends React.Component {
                                 <p> {dictionary.tab_publications} </p>
                             </div>
                         </header>
-                        <ul id={ 'authors_list' } className={ this.state.active_tab ? "list_wrapper hide" : "list_wrapper" }>
-                            { this._renderTiles(this.state.authors) }
-                        </ul>
-                        <ul id={ 'publications_list' } className={ this.state.active_tab ? "list_wrapper" : "list_wrapper hide" }>
-                            { this._renderTiles(this.state.publications) }
-                        </ul>
+                        <div id={ 'authors_holder' } className={ this.state.active_tab ? "list_holder hide" : "list_holder" }>
+                            <ul id={ 'authors_list' } className={ 'list_wrapper' }>
+                                { this._renderTiles(this.state.authors) }
+                            </ul>
+                        </div>
+                        <div id={ 'publications_holder' } className={ this.state.active_tab ? "list_holder" : "list_holder hide" }>
+                            <ul id={ 'publications_list' } className={ 'list_wrapper' }>
+                                { this._renderTiles(this.state.publications) }
+                            </ul>
+                        </div>
                     </main>
                 </div>
             </section>
