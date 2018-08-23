@@ -9,6 +9,7 @@ import consts from '../consts.js';
 import dictionary from '../dictionary.js';
 import newModel from '../newModel.js';
 import isEmpty from '../utils/utils.js';
+import logger from '../utils/logger.js';
 
 
 export default class Home extends React.Component {
