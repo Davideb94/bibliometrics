@@ -8,6 +8,7 @@ import Loader from "./Loader.jsx";
 import consts from '../consts.js';
 import dictionary from '../dictionary.js';
 import newModel from '../newModel.js';
+import isEmpty from '../utils/utils.js';
 
 
 export default class Home extends React.Component {
@@ -38,12 +39,9 @@ export default class Home extends React.Component {
             keyword: null,
             authors: this.newModel._authors,
             publications: this.newModel._publications,
+            contentIsLoaded: false,
 
         };
-
-        console.log( '[Home] constructor: ' );
-        console.log( 'AUTHORS: ' );
-        console.log( this.state.authors.items );
 
         window.addEventListener( consts.EVENT_AUTHORS_DID_CHANGE, () => {
             this.updateAuthors( this.newModel._authors );
@@ -62,20 +60,6 @@ export default class Home extends React.Component {
      ****************************/
 
     componentDidMount(){
-
-        /*
-        $(".scrollpane").scroll(function() {
-        var $this = $(this);
-        var $results = $("#results");
-
-        if (!$results.data("loading")) {
-
-                if ($this.scrollTop() + $this.height() == $results.height()) {
-                    loadResults();
-                }
-            }
-        });
-         */
 
         //-- detects when main scroll reaches the bottom of the page, then loads more contents
         let authors_holder = document.getElementById( 'authors_holder' );
@@ -110,19 +94,17 @@ export default class Home extends React.Component {
     updateAuthors( authors ){
 
         this.setState({
-            authors: authors
+            authors: authors,
+            contentIsLoaded: true
         });
-
-        console.log( '[Home] constructor: ' );
-        console.log( 'AUTHORS: ' );
-        console.log( this.state.authors.items );
 
     }
 
     updatePublications( pubs ){
 
         this.setState({
-            publications: pubs
+            publications: pubs,
+            contentIsLoaded: true
         });
 
     }
@@ -250,7 +232,7 @@ export default class Home extends React.Component {
                                 <p> {dictionary.tab_publications} </p>
                             </div>
                         </header>
-                        <Loader show={ this.state.authors.items == {} ? true : false } />
+                        <Loader show={ this.state.contentIsLoaded ? false : true } />
                         <div id={ 'authors_holder' } className={ this.state.active_tab ? "list_holder hide" : "list_holder" }>
                             <ul id={ 'authors_list' } className={ 'list_wrapper' }>
                                 { this._renderTiles(this.state.authors) }
