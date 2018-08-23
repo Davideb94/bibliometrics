@@ -3,6 +3,7 @@ import React from 'react';
 import Panel from './Panel.jsx';
 import tilesFactory from '../tilesFactory.jsx';
 import SearchPanel from './SearchPanel.jsx';
+import Loader from "./Loader.jsx";
 
 import consts from '../consts.js';
 import dictionary from '../dictionary.js';
@@ -40,11 +41,15 @@ export default class Home extends React.Component {
 
         };
 
-        window.addEventListener( consts.EVENT_AUTHORS_CHANGE, () => {
+        console.log( '[Home] constructor: ' );
+        console.log( 'AUTHORS: ' );
+        console.log( this.state.authors.items );
+
+        window.addEventListener( consts.EVENT_AUTHORS_DID_CHANGE, () => {
             this.updateAuthors( this.newModel._authors );
         } );
 
-        window.addEventListener( consts.EVENT_PUBLICATIONS_CHANGE, () => {
+        window.addEventListener( consts.EVENT_PUBLICATIONS_DID_CHANGE, () => {
            this.updatePublications( this.newModel._publications );
         } );
 
@@ -104,9 +109,13 @@ export default class Home extends React.Component {
 
     updateAuthors( authors ){
 
-            this.setState({
-                authors: authors
-            });
+        this.setState({
+            authors: authors
+        });
+
+        console.log( '[Home] constructor: ' );
+        console.log( 'AUTHORS: ' );
+        console.log( this.state.authors.items );
 
     }
 
@@ -241,6 +250,7 @@ export default class Home extends React.Component {
                                 <p> {dictionary.tab_publications} </p>
                             </div>
                         </header>
+                        <Loader show={ this.state.authors.items == {} ? true : false } />
                         <div id={ 'authors_holder' } className={ this.state.active_tab ? "list_holder hide" : "list_holder" }>
                             <ul id={ 'authors_list' } className={ 'list_wrapper' }>
                                 { this._renderTiles(this.state.authors) }

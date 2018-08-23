@@ -1,7 +1,7 @@
 const consts = {
 
 
-    /* TILES */
+    /* TILES TYPES*/
     TILE_TYPE_AUTHORS: 'authors',
     TILE_TYPE_PUBLICATIONS: 'publications',
 
@@ -10,10 +10,9 @@ const consts = {
     en: 'en',
 
     /* EVENTS */
-
     //customs
-    EVENT_AUTHORS_CHANGE: 'authors_change',
-    EVENT_PUBLICATIONS_CHANGE: 'publications_change',
+    EVENT_AUTHORS_DID_CHANGE: 'authors_change',
+    EVENT_PUBLICATIONS_DID_CHANGE: 'publications_change',
     EVENT_LOAD_AUTHORS: 'event_load_authors',
     EVENT_LOAD_PUBLICATIONS: 'event_load_publications',
 
@@ -29,6 +28,7 @@ const consts = {
         storageBucket: "bibliometrics-3fd89.appspot.com",
         messagingSenderId: "951744954569"
     },
+
     TABLE_BIB: 'bib',
     TABLE_PERSONS: 'persons',
     TABLE_PUBS: 'pubs',

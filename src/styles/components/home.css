@@ -123,6 +123,7 @@ main{
 
     height: 100%;
     width: calc( 100% - 300px );
+    position: static;
     z-index: 10;
 
 }

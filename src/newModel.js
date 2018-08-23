@@ -9,8 +9,8 @@ export default class newModel extends React.Component {
     constructor( props ) {
         super(props);
 
-        this.EVENT_AUTHORS_CHANGE = new Event( consts.EVENT_AUTHORS_CHANGE );
-        this.EVENT_PUBLICATIONS_CHANGE = new Event( consts.EVENT_PUBLICATIONS_CHANGE );
+        this.EVENT_AUTHORS_CHANGE = new Event( consts.EVENT_AUTHORS_DID_CHANGE );
+        this.EVENT_PUBLICATIONS_CHANGE = new Event( consts.EVENT_PUBLICATIONS_DID_CHANGE );
 
         this.loaded_authors = 10;
         this.loaded_publications = 10;
@@ -78,14 +78,14 @@ export default class newModel extends React.Component {
 
         this.loaded_authors = this.loaded_authors + 10;
         this._getAuthors();
-        window.dispatchEvent( new Event(consts.EVENT_AUTHORS_CHANGE) );
+        window.dispatchEvent( new Event(consts.EVENT_AUTHORS_DID_CHANGE) );
 
     }
 
     _increaseLoadedPublications(){
         this.loaded_publications = this.loaded_publications + 10;
         this._getPublications();
-        window.dispatchEvent( new Event(consts.EVENT_PUBLICATIONS_CHANGE) );
+        window.dispatchEvent( new Event(consts.EVENT_PUBLICATIONS_DID_CHANGE) );
     }
 
 
