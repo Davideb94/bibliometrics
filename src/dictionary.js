@@ -9,7 +9,8 @@ const dictionary = new LocalizedStrings({
         tab_publications: 'PUBLICATIONS',
         article: 'Article',
         search: 'Search',
-        publications: 'publications'
+        publications: 'publications',
+        undefined_university: 'unknown university'
 
     },
     it:{
@@ -19,7 +20,8 @@ const dictionary = new LocalizedStrings({
         tab_publications: 'PUBLICAZIONI',
         article: 'Articolo',
         search: 'Cerca',
-        publications: 'publicazioni'
+        publications: 'publicazioni',
+        undefined_university: 'università sconosciuta'
 
     }
 

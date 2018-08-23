@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import dictionary from '../dictionary.js';
-
 import tilesFactory from '../tilesFactory.jsx';
+import logger from '../utils/logger.js';
+import consts from '../consts.js';
 
 export default class Panel extends React.Component {
 
@@ -16,50 +17,60 @@ export default class Panel extends React.Component {
             showCoAuthors: false,
 
             //-- MODEL --//
-            name: null,
-            university: null
+            author_name: null,
+            author_surname: null,
+            number_of_pubs: null,
+            author_university: null
 
         };
 
         this.switchAuthor = this.props.openPanel;
         this.home_self = this.props.homeSelf;
+        this.model = this.props.model;
         this.tilesFactory = new tilesFactory( this.switchAuthor, this.home_self );
+
+        //--listeners--//
+        window.addEventListener( consts.EVENT_UPDATE_AUTHOR_NAME, ()=>{
+            this.updateAuthorName( this.model )
+        });
+
+        window.addEventListener( consts.EVENT_UPDATE_NUMBER_OF_PUBS, () => {
+            this.updateNumberOfPubs( this.model )
+        } );
+        
+        window.addEventListener( consts.EVENT_UPDATE_AUTHOR_UNIVERSITY, () => {
+            this.updateAuthorUniversity( this.model );
+        } );
 
     }
 
-    _getCurrentAuthorName( id ){
-
-        let name = undefined;
-
-        /*this.model._authors.items.forEach( (item) => {
-            if( item.id == id ){
-                name = item.name;
-            }
-        } );*/
-
-        return name;
-
-    };
-
-    _getCurrentAuthorUniversity( id ){
-
-        let university = undefined;
-
-        /*this.model._authors.items.forEach( (item) => {
-            if( item.id == id ){
-                university = item.university;
-            }
-        } );*/
-
-        return university;
-
-    };
-
     _updatePanelData( id ){
 
+
+
+    }
+
+    updateAuthorUniversity( model ){
+        
         this.setState({
-            name: this._getCurrentAuthorName( id ),
-            university: this._getCurrentAuthorUniversity( id )
+            author_university: model.current_author_university
+        });
+        
+    }
+    
+    updateNumberOfPubs( model ){
+
+        this.setState({
+            number_of_pubs: model.current_number_of_pubs
+        });
+
+    }
+
+    updateAuthorName( model ){
+
+        this.setState({
+            author_name: model.current_author_name,
+            author_surname: model.current_author_surname
         });
 
     }
@@ -96,12 +107,12 @@ export default class Panel extends React.Component {
 
                 <div className={ 'header' }>
                     <div className={ 'holder left' }>
-                        <p id={ 'name' } className={ 'name' }>{ this.state.name }</p>
-                        <p id={ 'university' } className={ 'university' }>{ this.state.university }</p>
+                        <p id={ 'name' } className={ 'name' }>{ this.state.author_name + ' ' + this.state.author_surname }</p>
+                        <p id={ 'university' } className={ 'university' }>{ this.state.author_university ? this.state.author_university : dictionary.undefined_university }</p>
                     </div>
                     <div className={ 'holder right' }>
-                        <p className={ 'number_of_publications' }>45</p>
-                        <p className={ 'publications' }>
+                        <p className={ this.state.number_of_pubs ? 'number_of_publications' : 'number_of_publications hide' }>{ this.state.number_of_pubs }</p>
+                        <p className={ this.state.number_of_pubs ? 'publications' : 'publications hide' }>
                             {dictionary.publications}
                         </p>
                     </div>

@@ -15,6 +15,9 @@ const consts = {
     EVENT_PUBLICATIONS_DID_CHANGE: 'publications_change',
     EVENT_LOAD_AUTHORS: 'event_load_authors',
     EVENT_LOAD_PUBLICATIONS: 'event_load_publications',
+    EVENT_UPDATE_AUTHOR_NAME: 'event_update_author_name',
+    EVENT_UPDATE_NUMBER_OF_PUBS: 'event_update_number_of_pubs',
+    EVENT_UPDATE_AUTHOR_UNIVERSITY: 'event_update_author_university',
 
     //native
     EVENT_SCROLL: 'scroll',

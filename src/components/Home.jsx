@@ -204,6 +204,14 @@ export default class Home extends React.Component {
 
     render() {
 
+        if( this.state.selected_auth ){
+
+            this.newModel.getAuthorName( this.state.selected_auth );
+            this.newModel.getNumberOfPublications( this.state.selected_auth );
+            this.newModel.getAuthorUniversity( this.state.selected_auth )
+
+        }
+
         return (
             <section id={ "home" } className={ "container" }>
                 <div className={ "container main_container" }>
@@ -220,7 +228,7 @@ export default class Home extends React.Component {
 
                     <section className={this.state.openPanel ? 'closing_layer' : 'closing_layer hide'} onClick={ this._onClosePanel.bind(this) }></section>
 
-                    <Panel ref={this.panel} className={ this.state.openPanel ? 'swipe_in_right': null } selected_auth={ this.state.selected_auth } update_show_co_authors={this._updateShowCoAuthors.bind(this)} openPanel={ this._onOpenPanel.bind(this) } homeSelf={ this } />
+                    <Panel ref={this.panel} className={ this.state.openPanel ? 'swipe_in_right': null } selected_auth={ this.state.selected_auth } update_show_co_authors={this._updateShowCoAuthors.bind(this)} openPanel={ this._onOpenPanel.bind(this) } homeSelf={ this } model={ this.newModel }/>
 
                     <SearchPanel ref={this.input} className={ this.state.openSearch ? 'layer_fade_in search_panel' : 'search_panel' } updateKeyword={ this.updateKeyword.bind(this) } />
 
