@@ -10,7 +10,7 @@
     align-items: center;
     background: var( --theme-dark-grey );
     box-shadow: var( --shadow-3 );
-    overflow-y: auto;
+    overflow: hidden;
     transition: left 200ms;
     transition-timing-function: cubic-bezier( 0.4, 0.0, 0.2, 1 );
     z-index: 50;
@@ -40,7 +40,7 @@
 
 .header{
 
-    min-height: 10%;
+    height: 20%;
     width: calc( 100% - 390px );
     display: flex;
     flex-direction: row;
@@ -67,8 +67,9 @@
 
 .header .holder .name{
 
+    height: 70%;
     margin: 0;
-    font-size: 3em;
+    font-size: 2.5em;
     color: rgba( 255, 255, 255, 0.8 );
     overflow: hidden;
 
@@ -76,6 +77,8 @@
 
 .header .holder .university{
 
+    height: 30%;
+    margin: 0;
     font-size: 1em;
     color: rgba( 255, 255, 255, 0.6 );
     overflow: hidden;
@@ -102,12 +105,20 @@
 
 #panel .body{
 
-    height: auto;
+    height: 80%;
     width: calc( 100% - 330px );
     display: flex;
     justify-content: center;
     padding-left: 330px;
-    margin-top: 30px;
+    overflow: auto;
+
+}
+
+#panel .panel_publications_list_wrapper{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
 }
 

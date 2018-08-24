@@ -51,6 +51,7 @@ export default class Panel extends React.Component {
 
     }
 
+
     _updatePanelData( id ){
 
 

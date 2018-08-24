@@ -27,6 +27,28 @@ export default class PanelTilesList extends React.Component {
         window.addEventListener( consts.EVENT_ON_CLOSE_PANEL, () => {
             this.onClosePanel();
         } );
+
+    }
+
+    componentDidMount(){
+
+        let publications_holder = document.getElementById( 'panel_publications_holder' );
+        let publications_list = document.getElementById( 'panel_publications_list' );
+
+        publications_holder.addEventListener( consts.EVENT_SCROLL, () => {
+            if ( publications_holder.offsetHeight + publications_holder.scrollTop + 1 >= publications_list.offsetHeight ) {
+                this.loadMorePubs();
+            }
+        });
+
+    }
+
+    loadMorePubs(){
+
+        this.setState({
+            loaded_publications: this.state.loaded_publications + 10
+        });
+
     }
 
     onClosePanel(){
@@ -70,9 +92,13 @@ export default class PanelTilesList extends React.Component {
     render() {
 
         return (
-            <div className={ 'body' }>
+            <div id={ 'panel_publications_holder' } className={ 'body' }>
                 <ul>
-                    { this._renderTiles( this.state.current_publications ) }
+                    <div id={ 'panel_publications_list' }>
+                        <div className={ 'panel_publications_list_wrapper' }>
+                        { this._renderTiles( this.state.current_publications ) }
+                        </div>
+                    </div>
                 </ul>
             </div>
         );

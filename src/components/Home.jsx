@@ -64,7 +64,6 @@ export default class Home extends React.Component {
 
     componentDidMount(){
 
-        //-- detects when main scroll reaches the bottom of the page, then loads more contents
         let authors_holder = document.getElementById( 'authors_holder' );
         let publications_holder = document.getElementById( 'publications_holder' );
 
