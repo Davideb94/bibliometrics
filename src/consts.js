@@ -13,11 +13,13 @@ const consts = {
     //customs
     EVENT_AUTHORS_DID_CHANGE: 'authors_change',
     EVENT_PUBLICATIONS_DID_CHANGE: 'publications_change',
+    EVENT_CURRENT_PUBLICATIONS_DID_CHANGE: 'event_current_publications_did_change',
     EVENT_LOAD_AUTHORS: 'event_load_authors',
     EVENT_LOAD_PUBLICATIONS: 'event_load_publications',
     EVENT_UPDATE_AUTHOR_NAME: 'event_update_author_name',
     EVENT_UPDATE_NUMBER_OF_PUBS: 'event_update_number_of_pubs',
     EVENT_UPDATE_AUTHOR_UNIVERSITY: 'event_update_author_university',
+    EVENT_ON_CLOSE_PANEL: 'event_on_close_panel',
 
     //native
     EVENT_SCROLL: 'scroll',

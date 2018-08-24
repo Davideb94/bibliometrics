@@ -6,6 +6,8 @@ import tilesFactory from '../tilesFactory.jsx';
 import logger from '../utils/logger.js';
 import consts from '../consts.js';
 
+import PanelTilesList from "./PanelTilesList.jsx";
+
 export default class Panel extends React.Component {
 
     constructor( props ){
@@ -20,7 +22,7 @@ export default class Panel extends React.Component {
             author_name: null,
             author_surname: null,
             number_of_pubs: null,
-            author_university: null
+            author_university: null,
 
         };
 
@@ -28,6 +30,7 @@ export default class Panel extends React.Component {
         this.home_self = this.props.homeSelf;
         this.model = this.props.model;
         this.tilesFactory = new tilesFactory( this.switchAuthor, this.home_self );
+
 
         //--listeners--//
         window.addEventListener( consts.EVENT_UPDATE_AUTHOR_NAME, ()=>{
@@ -42,11 +45,26 @@ export default class Panel extends React.Component {
             this.updateAuthorUniversity( this.model );
         } );
 
+        window.addEventListener( consts.EVENT_ON_CLOSE_PANEL, () => {
+            this.onClosePanel();
+        } );
+
     }
 
     _updatePanelData( id ){
 
 
+
+    }
+
+    onClosePanel(){
+
+        this.setState({
+            author_name: null,
+            author_surname: null,
+            number_of_pubs: null,
+            author_university: null,
+        });
 
     }
 
@@ -84,16 +102,6 @@ export default class Panel extends React.Component {
 
     }
 
-    _renderTiles( data ){
-
-        console.log( '[Panel] _renderTiles: ' + data );
-        let list = data.items.map(
-            ( item ) => this.tilesFactory.build( data.type, item )
-        );
-        return list;
-
-    }
-
     render() {
 
         return (
@@ -117,11 +125,7 @@ export default class Panel extends React.Component {
                         </p>
                     </div>
                 </div>
-                <div className={ 'body' }>
-                    <ul>
-                        { /*this._renderTiles(this.model._publications)*/ }
-                    </ul>
-                </div>
+                <PanelTilesList model={ this.model } tilesFactory={ this.tilesFactory } />
             </section>
         );
     }

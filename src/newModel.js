@@ -12,6 +12,7 @@ export default class newModel extends React.Component {
 
         this.EVENT_AUTHORS_CHANGE = new Event( consts.EVENT_AUTHORS_DID_CHANGE );
         this.EVENT_PUBLICATIONS_CHANGE = new Event( consts.EVENT_PUBLICATIONS_DID_CHANGE );
+        this.EVENT_CURRENT_PUBLICATIONS_DID_CHANGE = new Event( consts.EVENT_CURRENT_PUBLICATIONS_DID_CHANGE );
         this.EVENT_UPDATE_AUTHOR_NAME = new Event( consts.EVENT_UPDATE_AUTHOR_NAME );
         this.EVENT_UPDATE_NUMBER_OF_PUBS = new Event( consts.EVENT_UPDATE_NUMBER_OF_PUBS );
         this.EVENT_UPDATE_AUTHOR_UNIVERSITY = new Event( consts.EVENT_UPDATE_AUTHOR_UNIVERSITY );
@@ -28,6 +29,11 @@ export default class newModel extends React.Component {
             type: consts.TILE_TYPE_PUBLICATIONS,
             items: {}
         };
+
+        this.current_publications = {
+            type: consts.TILE_TYPE_PUBLICATIONS,
+            items: []
+        }
 
         this.current_author_name = null;
         this.current_author_surname = null;
@@ -77,6 +83,41 @@ export default class newModel extends React.Component {
         publications.on( 'value', snap => {
             this._publications.items = snap.val();
             window.dispatchEvent( this.EVENT_PUBLICATIONS_CHANGE );
+        } );
+
+    }
+
+    getCurrentPublications( code ){
+
+        let didUpdate = false;
+        let projects = [];
+        let current_pubs = [];
+
+        let projectsRef = firebase.database().ref().child( consts.TABLE_PUBS ).child( 'authors' ).child( code ).child( 'projects' );
+        projectsRef.on( 'value', snap => {
+
+            projects = snap.val();
+
+            // should wrap this block in a promise and wait for it to actually finish before dispatching the event
+            for( let project in projects ){
+                let current_pubsRef = firebase.database().ref().child( consts.TABLE_BIB ).child( projects[project] );
+                current_pubsRef.on( 'value', snap => {
+                    if( snap.val() ){
+                        current_pubs.push( snap.val() );
+                        this.current_publications.items = current_pubs;
+                        didUpdate = true;
+                        window.dispatchEvent( this.EVENT_CURRENT_PUBLICATIONS_DID_CHANGE );
+                    }
+                });
+            }
+
+            if( !didUpdate ){
+
+                this.current_publications.items = [];
+                window.dispatchEvent( this.EVENT_CURRENT_PUBLICATIONS_DID_CHANGE );
+
+            }
+
         } );
 
     }

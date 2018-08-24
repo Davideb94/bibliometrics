@@ -22,6 +22,8 @@ export default class Home extends React.Component {
     constructor( props ){
         super( props );
 
+        this.EVENT_ON_CLOSE_PANEL = new Event( consts.EVENT_ON_CLOSE_PANEL );
+
         this.panel = React.createRef();
         this.input = React.createRef();
         this.tilesFactory = new tilesFactory( this._onOpenPanel, this );
@@ -182,6 +184,8 @@ export default class Home extends React.Component {
             this.panel.current._onShowCoAuthors();
         }
 
+        window.dispatchEvent( this.EVENT_ON_CLOSE_PANEL );
+
     }
 
     _renderTiles( data ){
@@ -208,7 +212,8 @@ export default class Home extends React.Component {
 
             this.newModel.getAuthorName( this.state.selected_auth );
             this.newModel.getNumberOfPublications( this.state.selected_auth );
-            this.newModel.getAuthorUniversity( this.state.selected_auth )
+            this.newModel.getAuthorUniversity( this.state.selected_auth );
+            this.newModel.getCurrentPublications( this.state.selected_auth );
 
         }
 
@@ -228,7 +233,7 @@ export default class Home extends React.Component {
 
                     <section className={this.state.openPanel ? 'closing_layer' : 'closing_layer hide'} onClick={ this._onClosePanel.bind(this) }></section>
 
-                    <Panel ref={this.panel} className={ this.state.openPanel ? 'swipe_in_right': null } selected_auth={ this.state.selected_auth } update_show_co_authors={this._updateShowCoAuthors.bind(this)} openPanel={ this._onOpenPanel.bind(this) } homeSelf={ this } model={ this.newModel }/>
+                    <Panel ref={this.panel} className={ this.state.openPanel ? 'swipe_in_right': null } update_show_co_authors={this._updateShowCoAuthors.bind(this)} openPanel={ this._onOpenPanel.bind(this) } homeSelf={ this } model={ this.newModel }/>
 
                     <SearchPanel ref={this.input} className={ this.state.openSearch ? 'layer_fade_in search_panel' : 'search_panel' } updateKeyword={ this.updateKeyword.bind(this) } />
 

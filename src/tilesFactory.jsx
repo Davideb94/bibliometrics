@@ -3,6 +3,7 @@ import consts from './consts.js';
 
 import Author from './components/Author.jsx';
 import Publication from './components/Publication.jsx';
+import logger from "./utils/logger";
 
 export default class tilesFactory {
 
