@@ -2,6 +2,7 @@ import React from 'react';
 
 import consts from "../consts";
 import logger from '../utils/logger.js';
+import Loader from "./Loader.jsx";
 
 export default class PanelTilesList extends React.Component {
 
@@ -16,7 +17,8 @@ export default class PanelTilesList extends React.Component {
                 type: consts.TILE_TYPE_PUBLICATIONS,
                 items: []
             },
-            loaded_publications: 10
+            loaded_publications: 10,
+            contentIsLoaded: false,
         };
 
         //-- listeners --//
@@ -83,6 +85,7 @@ export default class PanelTilesList extends React.Component {
                     list.push( this.tilesFactory.build( data.type, item, data.items[item] ) );
                 }
             }
+
         }
 
         return list;
@@ -91,8 +94,11 @@ export default class PanelTilesList extends React.Component {
 
     render() {
 
+        logger( 'PanelTilesList, render', 'this.state.contentIsLoaded', this.state.contentIsLoaded );
+
         return (
             <div id={ 'panel_publications_holder' } className={ 'body' }>
+                <Loader show={ this.state.current_publications.items.length == 0 ? true : false } />
                 <ul>
                     <div id={ 'panel_publications_list' }>
                         <div className={ 'panel_publications_list_wrapper' }>
