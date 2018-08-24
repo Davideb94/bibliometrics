@@ -255,6 +255,7 @@ export default class Home extends React.Component {
                         <div id={ 'authors_holder' } className={ this.state.active_tab ? "list_holder hide" : "list_holder" }>
                             <ul id={ 'authors_list' } className={ 'list_wrapper' }>
                                 { this._renderTiles(this.state.authors) }
+                                { logger( 'Home, render', 'this._renderTiles(this.state.authors', this._renderTiles(this.state.authors)) }
                             </ul>
                         </div>
                         <div id={ 'publications_holder' } className={ this.state.active_tab ? "list_holder" : "list_holder hide" }>

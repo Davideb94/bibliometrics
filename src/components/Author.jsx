@@ -19,7 +19,10 @@ export default class Author extends React.Component {
         //onClick={ () => {this.props.openPanel( this.id )} }
 
         this.state = {
+
+            id: this.id,
             isSpread: false
+
         }
     }
 
@@ -37,28 +40,28 @@ export default class Author extends React.Component {
             <li onClick={ this.spread.bind(this) } className={ this.state.isSpread ? "tile author spread" : "tile author" }>
                 <div className={ 'left_holder' }>
                     <div className={ 'img_holder' }>
-                        <img src={ this.image } />
+                        <img src={ this.props.image } />
                     </div>
                     <div className={ 'name_holder' }>
-                        <p>{ this.name }</p>
+                        <p>{ this.props.name }</p>
                         <div className={ this.state.isSpread ? 'co-authors_holder spread' : 'co-authors_holder' }>
-                            <img src={ this.image } />
-                            <img src={ this.image } />
-                            <img src={ this.image } />
+                            <img src={ this.props.image } />
+                            <img src={ this.props.image } />
+                            <img src={ this.props.image } />
                         </div>
                     </div>
                 </div>
                 <div className={ 'right_holder' }>
                     <div className={ 'university_holder' }>
-                        <p>{ this.university }</p>
+                        <p>{ this.props.university }</p>
                         <div className={ this.state.isSpread ? 'publication_types spread' : 'publication_types' }>
-                            <img src={ this.image } />
-                            <img src={ this.image } />
-                            <img src={ this.image } />
+                            <img src={ this.props.image } />
+                            <img src={ this.props.image } />
+                            <img src={ this.props.image } />
                         </div>
                     </div>
                 </div>
-                <div onClick={ () => {this.props.openPanel( this.id )} } className={ this.state.isSpread ? 'button_open_panel spread' : 'button_open_panel' }>
+                <div onClick={ () => {this.props.openPanel( this.props.id )} } className={ this.state.isSpread ? 'button_open_panel spread' : 'button_open_panel' }>
                     <img src={ consts.IMG_RIGHT_ARROW } />
                 </div>
             </li>

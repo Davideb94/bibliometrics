@@ -71,7 +71,11 @@ export default class newModel extends React.Component {
 
         if( keyword ){
 
-            logger( 'newModel, getAuthors', 'keyword: ', keyword );
+            let authors = firebase.database().ref().child( consts.TABLE_PERSONS ).orderByChild("surname").equalTo(keyword);
+            authors.on( 'value', snap => {
+                this._authors.items = snap.val();
+                window.dispatchEvent( this.EVENT_AUTHORS_CHANGE );
+            } );
 
         } else{
 
