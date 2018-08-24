@@ -49,8 +49,8 @@ export default class newModel extends React.Component {
         this._connect();
 
         //-- fills fields with fetched data --//
-        this.getAuthors();
-        this.getPublications();
+        this.getAuthors( null );
+        this.getPublications( null );
 
         //-- sets listeners --//
         window.addEventListener( consts.EVENT_LOAD_AUTHORS, () => {
@@ -67,23 +67,39 @@ export default class newModel extends React.Component {
         firebase.initializeApp( consts.FIREBASE_CONNECTION );
     }
 
-    getAuthors(){
+    getAuthors( keyword ){
 
-        let authors = firebase.database().ref().child( consts.TABLE_PERSONS ).limitToFirst( this.loaded_authors );
-        authors.on( 'value', snap => {
-            this._authors.items = snap.val();
-            window.dispatchEvent( this.EVENT_AUTHORS_CHANGE );
-        } );
+        if( keyword ){
+
+            logger( 'newModel, getAuthors', 'keyword: ', keyword );
+
+        } else{
+
+            let authors = firebase.database().ref().child( consts.TABLE_PERSONS ).limitToFirst( this.loaded_authors );
+            authors.on( 'value', snap => {
+                this._authors.items = snap.val();
+                window.dispatchEvent( this.EVENT_AUTHORS_CHANGE );
+            } );
+
+        }
 
     }
 
-    getPublications(){
+    getPublications( keyword ){
 
-        let publications = firebase.database().ref().child( consts.TABLE_BIB ).limitToFirst( this.loaded_publications );
-        publications.on( 'value', snap => {
-            this._publications.items = snap.val();
-            window.dispatchEvent( this.EVENT_PUBLICATIONS_CHANGE );
-        } );
+        if( keyword ){
+
+            logger( 'newModel, getPublications', 'keyword: ', keyword );
+
+        } else{
+
+            let publications = firebase.database().ref().child( consts.TABLE_BIB ).limitToFirst( this.loaded_publications );
+            publications.on( 'value', snap => {
+                this._publications.items = snap.val();
+                window.dispatchEvent( this.EVENT_PUBLICATIONS_CHANGE );
+            } );
+
+        }
 
     }
 

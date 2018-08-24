@@ -85,6 +85,8 @@ export default class Home extends React.Component {
             }
         });
 
+
+
     }
 
     /***************************
@@ -109,6 +111,10 @@ export default class Home extends React.Component {
             contentIsLoaded: true
         });
 
+    }
+
+    updateSearch(){
+        this.newModel.getAuthors( this.state.keyword );
     }
 
     updateKeyword( keyword ){
@@ -234,7 +240,7 @@ export default class Home extends React.Component {
 
                     <Panel ref={this.panel} className={ this.state.openPanel ? 'swipe_in_right': null } update_show_co_authors={this._updateShowCoAuthors.bind(this)} openPanel={ this._onOpenPanel.bind(this) } homeSelf={ this } model={ this.newModel }/>
 
-                    <SearchPanel ref={this.input} className={ this.state.openSearch ? 'layer_fade_in search_panel' : 'search_panel' } updateKeyword={ this.updateKeyword.bind(this) } />
+                    <SearchPanel ref={this.input} className={ this.state.openSearch ? 'layer_fade_in search_panel' : 'search_panel' } updateKeyword={ this.updateKeyword.bind(this) } openSearch={ this._onOpenSearch.bind(this) } isOpened={ this.state.openSearch } updateSearch={ this.updateSearch.bind(this) }/>
 
                     <main id={ 'main' }>
                         <header>

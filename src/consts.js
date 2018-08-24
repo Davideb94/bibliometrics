@@ -23,6 +23,8 @@ const consts = {
 
     //native
     EVENT_SCROLL: 'scroll',
+    EVENT_KEYPRESS: 'keypress',
+    EVENT_KEYUP: 'keyup',
 
     /* DATABASE */
     FIREBASE_CONNECTION: {

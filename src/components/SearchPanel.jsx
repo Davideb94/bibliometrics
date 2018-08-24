@@ -1,5 +1,7 @@
 import React from "react";
 import dictionary from "../dictionary.js";
+import * as consts from "../consts";
+import logger from "../utils/logger";
 
 
 export default class SearchPanel extends React.Component {
@@ -9,37 +11,58 @@ export default class SearchPanel extends React.Component {
 
         this.input = null;
         this.updateHomeKeyword = this.props.updateKeyword;
-
-        this.state = {
-            keyword: null
-        }
+        this.openSearch = this.props.openSearch;
+        this.updateSearch = this.props.updateSearch;
     }
 
     componentDidMount(){
+
         this.input = document.getElementById( 'input_search' );
+        this.input.addEventListener( consts.EVENT_KEYUP, (e) => {
+            this.onKeyPress(e);
+        } );
+
+    }
+
+    onKeyPress( e ){
+
+        let key = e.which || e.keyCode;
+
+        this.updateHomeKeyword( this.input.value );
+
+        switch( key ){
+            case 13:    // keypress ENTER
+                if( this.props.isOpened ){
+                    this.openSearch();
+                    this.updateSearch();
+                }
+                break;
+
+            case 27:    // keypress ESC
+                if( this.props.isOpened ){
+                    this.openSearch();
+                    this.updateSearch();
+                }
+                break;
+
+            case 32:    // keypress SPACE
+                if( this.props.isOpened ) {
+                    this.updateSearch();
+                }
+                break;
+        }
+
     }
 
     giveFocus(){
         this.input.focus();
     }
 
-    _onKeyPress(){
-
-        this.setState({
-            keyword: this.input.value
-        });
-
-        window.setTimeout( () => {
-            this.updateHomeKeyword( this.state.keyword );
-        }, 50 );
-
-    }
-
     render() {
 
         return (
             <div className={ this.props.className }>
-                <input id={ 'input_search' } type={ 'text' } placeholder={ this.state.keyword ? this.state.keyword : dictionary.search } onKeyUp={ this._onKeyPress.bind(this) }/>
+                <input id={ 'input_search' } type={ 'text' } placeholder={ dictionary.search } />
             </div>
         );
     }

@@ -94,8 +94,6 @@ export default class PanelTilesList extends React.Component {
 
     render() {
 
-        logger( 'PanelTilesList, render', 'this.state.contentIsLoaded', this.state.contentIsLoaded );
-
         return (
             <div id={ 'panel_publications_holder' } className={ 'body' }>
                 <Loader show={ this.state.current_publications.items.length == 0 ? true : false } />
