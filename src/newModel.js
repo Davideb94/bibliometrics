@@ -71,6 +71,8 @@ export default class newModel extends React.Component {
 
         if( keyword ){
 
+            keyword = keyword.trim();
+
             let authors = firebase.database().ref().child( consts.TABLE_PERSONS ).orderByChild("surname").equalTo(keyword);
             authors.on( 'value', snap => {
                 this._authors.items = snap.val();

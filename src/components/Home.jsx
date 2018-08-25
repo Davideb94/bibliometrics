@@ -64,6 +64,7 @@ export default class Home extends React.Component {
 
     componentDidMount(){
 
+        //-- checks when scroll reached bottom and triggers event --//
         let authors_holder = document.getElementById( 'authors_holder' );
         let publications_holder = document.getElementById( 'publications_holder' );
 

@@ -47,9 +47,7 @@ export default class SearchPanel extends React.Component {
                 break;
 
             case 32:    // keypress SPACE
-                if( this.props.isOpened ) {
-                    this.updateSearch();
-                }
+
                 break;
         }
 
@@ -63,7 +61,7 @@ export default class SearchPanel extends React.Component {
 
         return (
             <div className={ this.props.className }>
-                <input id={ 'input_search' } type={ 'text' } placeholder={ dictionary.search } />
+                <input id={ 'input_search' } type={ 'text' } placeholder={ dictionary.search_placeholder } />
             </div>
         );
     }

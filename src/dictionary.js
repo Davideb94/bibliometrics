@@ -9,6 +9,7 @@ const dictionary = new LocalizedStrings({
         tab_publications: 'PUBLICATIONS',
         article: 'Article',
         search: 'Search',
+        search_placeholder: 'Authors, publications...',
         publications: 'publications',
         undefined_university: 'unknown university'
 
@@ -20,6 +21,7 @@ const dictionary = new LocalizedStrings({
         tab_publications: 'PUBLICAZIONI',
         article: 'Articolo',
         search: 'Cerca',
+        search_placeholder: 'Autori, publicazioni...',
         publications: 'publicazioni',
         undefined_university: 'università sconosciuta'
 
