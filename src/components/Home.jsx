@@ -146,6 +146,8 @@ export default class Home extends React.Component {
 
     updateKeyword( keyword ){
 
+        keyword = keyword.trim();
+
         this.setState({
             keyword: keyword
         });

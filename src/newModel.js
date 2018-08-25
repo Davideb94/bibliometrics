@@ -69,11 +69,9 @@ export default class newModel extends React.Component {
 
     getAuthors( keyword ){
 
-        if( keyword ){
+        if( !keyword ){
 
-            keyword = keyword.trim();
-
-            let authors = firebase.database().ref().child( consts.TABLE_PERSONS ).orderByChild("surname").equalTo(keyword);
+            let authors = firebase.database().ref().child( consts.TABLE_PERSONS ).limitToFirst( this.loaded_authors );
             authors.on( 'value', snap => {
                 this._authors.items = snap.val();
                 window.dispatchEvent( this.EVENT_AUTHORS_CHANGE );
@@ -81,7 +79,7 @@ export default class newModel extends React.Component {
 
         } else{
 
-            let authors = firebase.database().ref().child( consts.TABLE_PERSONS ).limitToFirst( this.loaded_authors );
+            let authors = firebase.database().ref().child( consts.TABLE_PERSONS ).orderByChild("surname").equalTo(keyword);
             authors.on( 'value', snap => {
                 this._authors.items = snap.val();
                 window.dispatchEvent( this.EVENT_AUTHORS_CHANGE );
@@ -93,9 +91,9 @@ export default class newModel extends React.Component {
 
     getPublications( keyword ){
 
-        if( keyword ){
+        if( !keyword ){
 
-            let publications = firebase.database().ref().child( consts.TABLE_BIB ).orderByChild("title").equalTo( keyword );
+            let publications = firebase.database().ref().child( consts.TABLE_BIB ).limitToFirst( this.loaded_publications );
             publications.on( 'value', snap => {
                 this._publications.items = snap.val();
                 window.dispatchEvent( this.EVENT_PUBLICATIONS_CHANGE );
@@ -103,7 +101,7 @@ export default class newModel extends React.Component {
 
         } else{
 
-            let publications = firebase.database().ref().child( consts.TABLE_BIB ).limitToFirst( this.loaded_publications );
+            let publications = firebase.database().ref().child( consts.TABLE_BIB ).orderByChild("title").equalTo( keyword );
             publications.on( 'value', snap => {
                 this._publications.items = snap.val();
                 window.dispatchEvent( this.EVENT_PUBLICATIONS_CHANGE );
