@@ -47,6 +47,7 @@ export default class Home extends React.Component {
         };
 
         window.addEventListener( consts.EVENT_AUTHORS_DID_CHANGE, () => {
+            logger( 'Home, constructor', 'this.newModel._authors', this.newModel._authors );
             this.updateAuthors( this.newModel._authors );
         } );
 
@@ -122,6 +123,7 @@ export default class Home extends React.Component {
             publications: {},
             contentIsLoaded: false
         }, () =>{
+            logger( 'Home, updateSearch', 'this.state.keyword', this.state.keyword );
             this.newModel.getAuthors( this.state.keyword );
             this.newModel.getPublications( this.state.keyword );
         });
@@ -130,7 +132,9 @@ export default class Home extends React.Component {
 
     updateKeyword( keyword ){
 
+        logger( 'Home, updateKeyword', 'keyword: before', keyword );
         keyword = keyword.trim();
+        logger( 'Home, updateKeyword', 'keyword: after', keyword );
 
         this.setState({
             keyword: keyword

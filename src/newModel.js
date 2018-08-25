@@ -1,18 +1,15 @@
-import React from 'react';
 import * as firebase from 'firebase';
 
 import consts from "./consts";
 import logger from './utils/logger.js';
 
 
-export default class newModel extends React.Component {
+export default class newModel {
 
-    constructor( props ) {
-        super(props);
+    constructor() {
 
-
-        this.EVENT_AUTHORS_CHANGE = new Event( consts.EVENT_AUTHORS_DID_CHANGE );
-        this.EVENT_PUBLICATIONS_CHANGE = new Event( consts.EVENT_PUBLICATIONS_DID_CHANGE );
+        this.EVENT_AUTHORS_DID_CHANGE = new Event( consts.EVENT_AUTHORS_DID_CHANGE );
+        this.EVENT_PUBLICATIONS_DID_CHANGE = new Event( consts.EVENT_PUBLICATIONS_DID_CHANGE );
         this.EVENT_CURRENT_PUBLICATIONS_DID_CHANGE = new Event( consts.EVENT_CURRENT_PUBLICATIONS_DID_CHANGE );
         this.EVENT_UPDATE_AUTHOR_NAME = new Event( consts.EVENT_UPDATE_AUTHOR_NAME );
         this.EVENT_UPDATE_NUMBER_OF_PUBS = new Event( consts.EVENT_UPDATE_NUMBER_OF_PUBS );
@@ -70,12 +67,16 @@ export default class newModel extends React.Component {
 
     getAuthors( keyword ){
 
-        if( !keyword ){
+        logger( 'newModel, getAuthor', 'keyword: ', keyword )
+
+        if( keyword === undefined ){
+            return;
+        } else if( !keyword ){
 
             let authors = firebase.database().ref().child( consts.TABLE_PERSONS ).limitToFirst( this.loaded_authors );
             authors.on( 'value', snap => {
                 this._authors.items = snap.val();
-                window.dispatchEvent( this.EVENT_AUTHORS_CHANGE );
+                window.dispatchEvent( this.EVENT_AUTHORS_DID_CHANGE );
             } );
 
         } else{
@@ -83,7 +84,8 @@ export default class newModel extends React.Component {
             let authors = firebase.database().ref().child( consts.TABLE_PERSONS ).orderByChild("surname").equalTo(keyword);
             authors.on( 'value', snap => {
                 this._authors.items = snap.val();
-                window.dispatchEvent( this.EVENT_AUTHORS_CHANGE );
+                logger( 'newModel, getAuthros', 'this._authors', this._authors );
+                window.dispatchEvent( this.EVENT_AUTHORS_DID_CHANGE );
             } );
 
         }
@@ -92,12 +94,14 @@ export default class newModel extends React.Component {
 
     getPublications( keyword ){
 
-        if( !keyword ){
+        if( keyword === undefined ){
+            return;
+        } else if( !keyword ){
 
             let publications = firebase.database().ref().child( consts.TABLE_BIB ).limitToFirst( this.loaded_publications );
             publications.on( 'value', snap => {
                 this._publications.items = snap.val();
-                window.dispatchEvent( this.EVENT_PUBLICATIONS_CHANGE );
+                window.dispatchEvent( this.EVENT_PUBLICATIONS_DID_CHANGE );
             } );
 
         } else{
@@ -105,7 +109,7 @@ export default class newModel extends React.Component {
             let publications = firebase.database().ref().child( consts.TABLE_BIB ).orderByChild("title").equalTo( keyword );
             publications.on( 'value', snap => {
                 this._publications.items = snap.val();
-                window.dispatchEvent( this.EVENT_PUBLICATIONS_CHANGE );
+                window.dispatchEvent( this.EVENT_PUBLICATIONS_DID_CHANGE );
             } );
 
         }
