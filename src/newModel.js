@@ -10,6 +10,7 @@ export default class newModel extends React.Component {
     constructor( props ) {
         super(props);
 
+
         this.EVENT_AUTHORS_CHANGE = new Event( consts.EVENT_AUTHORS_DID_CHANGE );
         this.EVENT_PUBLICATIONS_CHANGE = new Event( consts.EVENT_PUBLICATIONS_DID_CHANGE );
         this.EVENT_CURRENT_PUBLICATIONS_DID_CHANGE = new Event( consts.EVENT_CURRENT_PUBLICATIONS_DID_CHANGE );

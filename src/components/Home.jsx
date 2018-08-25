@@ -51,7 +51,8 @@ export default class Home extends React.Component {
         } );
 
         window.addEventListener( consts.EVENT_PUBLICATIONS_DID_CHANGE, () => {
-           this.updatePublications( this.newModel._publications );
+            // this.newModel._publications: is not consistent with the actual value inside newModel
+            this.updatePublications( this.newModel._publications );
         } );
 
     }
@@ -96,24 +97,6 @@ export default class Home extends React.Component {
 
      ****************************/
 
-    clearAuthors(){
-
-        this.setState({
-            authors: {},
-            contentIsLoaded: false
-        });
-
-    }
-
-    clearPublications(){
-
-        this.setState({
-            publications: {},
-            contentIsLoaded: false
-        });
-
-    }
-
     updateAuthors( authors ){
 
         this.setState({
@@ -134,13 +117,14 @@ export default class Home extends React.Component {
 
     updateSearch(){
 
-        this.clearAuthors();
-        this.clearPublications();
-
-        window.setTimeout(() => {
+        this.setState({
+            authors: {},
+            publications: {},
+            contentIsLoaded: false
+        }, () =>{
             this.newModel.getAuthors( this.state.keyword );
             this.newModel.getPublications( this.state.keyword );
-        }, 1000);
+        });
 
     }
 
