@@ -115,6 +115,7 @@ export default class Home extends React.Component {
 
     updateSearch(){
         this.newModel.getAuthors( this.state.keyword );
+        this.newModel.getPublications( this.state.keyword );
     }
 
     updateKeyword( keyword ){

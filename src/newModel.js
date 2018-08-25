@@ -93,7 +93,11 @@ export default class newModel extends React.Component {
 
         if( keyword ){
 
-            logger( 'newModel, getPublications', 'keyword: ', keyword );
+            let publications = firebase.database().ref().child( consts.TABLE_BIB ).orderByChild("title").equalTo( keyword );
+            publications.on( 'value', snap => {
+                this._publications.items = snap.val();
+                window.dispatchEvent( this.EVENT_PUBLICATIONS_CHANGE );
+            } );
 
         } else{
 

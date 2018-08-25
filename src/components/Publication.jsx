@@ -41,7 +41,7 @@ export default class Publication extends React.Component {
             <li onClick={ this.spread.bind(this) } className={ this.state.isSpread ? "tile publication spread" : "tile publication" }>
                 <div className={ 'left_holder' }>
                     <p className={ 'title' }>
-                        { this.title }
+                        { this.props.title }
                     </p>
                     <div className={ 'pubblication_type' }>
                         <div className={ 'chip' }>
@@ -53,7 +53,7 @@ export default class Publication extends React.Component {
                 </div>
                 <div className={ 'right_holder' }>
                     <p className={ 'author' }>
-                        { this.author }
+                        { this.props.author }
                     </p>
                     <div className={ 'source' }>
                         <span>
