@@ -51,13 +51,7 @@ export default class newModel {
         this.getPublications( null );
 
         //-- sets listeners --//
-        window.addEventListener( consts.EVENT_LOAD_AUTHORS, () => {
-            this.increaseLoadedAuthors();
-        } );
 
-        window.addEventListener( consts.EVENT_LOAD_PUBLICATIONS, () => {
-            this.increaseLoadedPublications();
-        } );
 
     }
 
@@ -194,17 +188,17 @@ export default class newModel {
 
     }
 
-    increaseLoadedAuthors(){
+    increaseLoadedAuthors( keyword ){
 
         this.loaded_authors = this.loaded_authors + 10;
-        this.getAuthors();
+        this.getAuthors( keyword );
         window.dispatchEvent( new Event(consts.EVENT_AUTHORS_DID_CHANGE) );
 
     }
 
-    increaseLoadedPublications(){
+    increaseLoadedPublications( keyword ){
         this.loaded_publications = this.loaded_publications + 10;
-        this.getPublications();
+        this.getPublications( keyword );
         window.dispatchEvent( new Event(consts.EVENT_PUBLICATIONS_DID_CHANGE) );
     }
 

@@ -73,18 +73,18 @@ export default class Home extends React.Component {
         let authors_list = document.getElementById( 'authors_list' );
         let publications_list = document.getElementById( 'publications_list' );
 
-        authors_holder.addEventListener( consts.EVENT_SCROLL, function() {
+        authors_holder.addEventListener( consts.EVENT_SCROLL, () => {
 
             if( authors_holder.offsetHeight + authors_holder.scrollTop - 95 - 15  >= authors_list.offsetHeight ){
-                window.dispatchEvent( new Event(consts.EVENT_LOAD_AUTHORS) );
+                this.newModel.increaseLoadedAuthors( this.state.keyword );
             }
 
         });
 
-        publications_holder.addEventListener( consts.EVENT_SCROLL, function() {
+        publications_holder.addEventListener( consts.EVENT_SCROLL, () => {
 
             if ( publications_holder.offsetHeight + publications_holder.scrollTop - 95 - 15 >= publications_list.offsetHeight ) {
-                window.dispatchEvent( new Event(consts.EVENT_LOAD_PUBLICATIONS) );
+                this.newModel.increaseLoadedPublications( this.state.keyword );
             }
         });
 
