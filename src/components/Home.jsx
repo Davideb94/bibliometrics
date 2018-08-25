@@ -95,6 +95,24 @@ export default class Home extends React.Component {
 
      ****************************/
 
+    clearAuthors(){
+
+        this.setState({
+            authors: {},
+            contentIsLoaded: false
+        });
+
+    }
+
+    clearPublications(){
+
+        this.setState({
+            publications: {},
+            contentIsLoaded: false
+        });
+
+    }
+
     updateAuthors( authors ){
 
         this.setState({
@@ -114,8 +132,15 @@ export default class Home extends React.Component {
     }
 
     updateSearch(){
-        this.newModel.getAuthors( this.state.keyword );
-        this.newModel.getPublications( this.state.keyword );
+
+        this.clearAuthors();
+        this.clearPublications();
+
+        window.setTimeout(() => {
+            this.newModel.getAuthors( this.state.keyword );
+            this.newModel.getPublications( this.state.keyword );
+        }, 1000);
+
     }
 
     updateKeyword( keyword ){
@@ -256,7 +281,6 @@ export default class Home extends React.Component {
                         <div id={ 'authors_holder' } className={ this.state.active_tab ? "list_holder hide" : "list_holder" }>
                             <ul id={ 'authors_list' } className={ 'list_wrapper' }>
                                 { this._renderTiles(this.state.authors) }
-                                { logger( 'Home, render', 'this._renderTiles(this.state.authors', this._renderTiles(this.state.authors)) }
                             </ul>
                         </div>
                         <div id={ 'publications_holder' } className={ this.state.active_tab ? "list_holder" : "list_holder hide" }>

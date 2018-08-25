@@ -2,6 +2,7 @@ import React from "react";
 import dictionary from "../dictionary.js";
 import * as consts from "../consts";
 import logger from "../utils/logger";
+import PropTypes from "prop-types";
 
 
 export default class SearchPanel extends React.Component {
@@ -68,3 +69,12 @@ export default class SearchPanel extends React.Component {
     }
 
 }
+
+SearchPanel.propTypes = {
+
+    updateKeyword: PropTypes.func,
+    openSearch: PropTypes.func,
+    isOpened: PropTypes.bool,
+    updateSearch: PropTypes.func,
+
+};

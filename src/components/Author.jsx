@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import consts from '../consts.js';
+import logger from "../utils/logger.js";
 
 
 
