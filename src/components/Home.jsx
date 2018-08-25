@@ -52,7 +52,6 @@ export default class Home extends React.Component {
         } );
 
         window.addEventListener( consts.EVENT_PUBLICATIONS_DID_CHANGE, () => {
-            // this.newModel._publications: is not consistent with the actual value inside newModel
             this.updatePublications( this.newModel._publications );
         } );
 
@@ -87,8 +86,6 @@ export default class Home extends React.Component {
                 this.newModel.increaseLoadedPublications( this.state.keyword );
             }
         });
-
-
 
     }
 
@@ -273,11 +270,23 @@ export default class Home extends React.Component {
                             <ul id={ 'authors_list' } className={ 'list_wrapper' }>
                                 { this._renderTiles(this.state.authors) }
                             </ul>
+                            <div className={ this.state.authors.items == null && this.state.contentIsLoaded ? 'not_found_holder' : 'hide'} >
+                                <div className={ 'text' }>
+                                    <p className={ 'not_found_statement' }>{ dictionary.authors_not_found + this.state.keyword  + '"'}</p>
+                                    <p className={ 'not_found_label' }>{ dictionary.not_found_label }</p>
+                                </div>
+                            </div>
                         </div>
                         <div id={ 'publications_holder' } className={ this.state.active_tab ? "list_holder" : "list_holder hide" }>
                             <ul id={ 'publications_list' } className={ 'list_wrapper' }>
                                 { this._renderTiles(this.state.publications) }
                             </ul>
+                            <div className={ this.state.publications.items == null && this.state.contentIsLoaded ? 'not_found_holder' : 'hide'} >
+                                <div className={ 'text' }>
+                                    <p className={ 'not_found_statement' }>{ dictionary.publications_not_found + this.state.keyword + '"' }</p>
+                                    <p className={ 'not_found_label' }>{ dictionary.not_found_label }</p>
+                                </div>
+                            </div>
                         </div>
                     </main>
                 </div>
