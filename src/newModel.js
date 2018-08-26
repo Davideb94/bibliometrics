@@ -188,6 +188,24 @@ export default class newModel {
 
         this.co_authors = [];
 
+
+        let relations = null;
+        let relationsRef = firebase.database().ref().child( consts.TABLE_RELATIONS );
+        relationsRef.on( 'value', snap => {
+
+            relations = snap.val();
+            for( let relation in relations ){
+                let split = relation.split(/\s*\-\s*/g);
+                if( split[0] == selected_auth ){
+                    this.co_authors.push( split[1] )
+                } else if( split[1] == selected_auth ){
+                    this.co_authors.push( split[0] )
+                }
+            }
+            logger( 'newModel, getCoAuthors', 'this.co_authors', this.co_authors );
+
+        });
+        /*
         // Highly inefficient!!
         // stuff that should be done server side
         let authors = null;
@@ -223,7 +241,7 @@ export default class newModel {
 
             });
 
-        });
+        });*/
 
     }
 
