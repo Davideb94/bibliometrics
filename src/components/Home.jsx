@@ -55,6 +55,10 @@ export default class Home extends React.Component {
             this.updatePublications( this.newModel._publications );
         } );
 
+        window.addEventListener( consts.EVENT_UPDATE_CO_AUTHORS, () => {
+            this.updateCoAuthors();
+        } );
+
     }
 
     /***************************
@@ -163,8 +167,14 @@ export default class Home extends React.Component {
 
     }
 
-    _onShowCoAuthors(){
+    updateCoAuthors(){
+        //should receive a list of actual authors, not a list of codici fiscali
+        logger( 'Home, updateCoAuthors', 'this.newModel.co_authors', this.newModel.co_authors );
         this.panel.current._onShowCoAuthors();
+    }
+
+    getCoAuthors(){
+        this.newModel.getCoAuthors( this.state.selected_auth );
     }
 
     _onOpenSearch(){
@@ -241,10 +251,11 @@ export default class Home extends React.Component {
                 <div className={ "container main_container" }>
                     <aside>
                         <div onClick={ this._onOpenSearch.bind(this) } className={this.state.openPanel ? 'search hide' : 'search'}>
-                            <img src={ consts.IMG_SEARCH } />
+                            <img className={ this.state.openSearch ? 'show' : 'hide' } src={ consts.IMG_CLOSE_SEARCH } />
+                            <img className={ this.state.openSearch ? 'hide' : 'show' } src={ consts.IMG_SEARCH } />
                             <p>{ this.state.keyword ? this.state.keyword : dictionary.search }</p>
                         </div>
-                        <div onClick={ this._onShowCoAuthors.bind(this) } className={this.state.openPanel ? 'open_auth' : 'open_auth hide'}>
+                        <div onClick={ this.getCoAuthors.bind(this) } className={this.state.openPanel ? 'open_auth' : 'open_auth hide'}>
                             <p> {this.state.show_co_authors ? dictionary.hide_co_authors :  dictionary.show_co_authors} </p>
                             <img src={ consts.IMG_DOWN_ARROW } />
                         </div>

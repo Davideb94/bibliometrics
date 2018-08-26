@@ -14,6 +14,7 @@ export default class newModel {
         this.EVENT_UPDATE_AUTHOR_NAME = new Event( consts.EVENT_UPDATE_AUTHOR_NAME );
         this.EVENT_UPDATE_NUMBER_OF_PUBS = new Event( consts.EVENT_UPDATE_NUMBER_OF_PUBS );
         this.EVENT_UPDATE_AUTHOR_UNIVERSITY = new Event( consts.EVENT_UPDATE_AUTHOR_UNIVERSITY );
+        this.EVENT_UPDATE_CO_AUTHORS = new Event( consts.EVENT_UPDATE_CO_AUTHORS );
 
         this.loaded_authors = 10;
         this.loaded_publications = 10;
@@ -31,7 +32,9 @@ export default class newModel {
         this.current_publications = {
             type: consts.TILE_TYPE_PUBLICATIONS,
             items: []
-        }
+        };
+
+        this.co_authors = [];
 
         this.current_author_name = null;
         this.current_author_surname = null;
@@ -178,6 +181,49 @@ export default class newModel {
             window.dispatchEvent( this.EVENT_UPDATE_NUMBER_OF_PUBS );
 
         } );
+
+    }
+
+    getCoAuthors( selected_auth ){
+
+        this.co_authors = [];
+
+        // Highly inefficient!!
+        // stuff that should be done server side
+        let authors = null;
+        let authorsRef = firebase.database().ref().child( consts.TABLE_PUBS ).child( 'authors' );
+        authorsRef.on( 'value', snap => {
+
+            authors = snap.val();
+
+            let current_publications = null;
+            let current_publicationsRef = firebase.database().ref().child( consts.TABLE_PUBS ).child( 'authors' ).child( selected_auth ).child( 'projects' );
+            current_publicationsRef.on( 'value', snap => {
+
+                current_publications = snap.val();
+
+                for( let author in authors ){
+                    for( let project in authors[author].projects ){
+
+                        var is_coauthor = false;
+                        for( let publication in current_publications ) {
+                            if (authors[author].projects[project] == current_publications[publication] && author != selected_auth) {
+                                this.co_authors.push( author );
+                                is_coauthor = true;
+                                break;
+                            }
+                        }
+                        if( is_coauthor ){
+                            break;
+                        }
+                    }
+                }
+
+                window.dispatchEvent( this.EVENT_UPDATE_CO_AUTHORS );
+
+            });
+
+        });
 
     }
 

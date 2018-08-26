@@ -61,7 +61,7 @@ export default class SearchPanel extends React.Component {
 
         return (
             <div className={ this.props.className }>
-                <input id={ 'input_search' } type={ 'text' } placeholder={ dictionary.search_placeholder } />
+                <input id={ 'input_search' } type={ 'text' } placeholder={ dictionary.search_placeholder } autoComplete={ false }/>
             </div>
         );
     }
