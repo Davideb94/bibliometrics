@@ -1,6 +1,7 @@
 .tile{
 
     height: 100px;
+    min-height: 100px;
     width: 60%;
     margin-bottom: 10px;
     background: #FFF;
