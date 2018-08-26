@@ -47,7 +47,6 @@ export default class Home extends React.Component {
         };
 
         window.addEventListener( consts.EVENT_AUTHORS_DID_CHANGE, () => {
-            logger( 'Home, constructor', 'this.newModel._authors', this.newModel._authors );
             this.updateAuthors( this.newModel._authors );
         } );
 
@@ -168,7 +167,6 @@ export default class Home extends React.Component {
     }
 
     updateCoAuthors(){
-        //should receive a list of actual authors, not a list of codici fiscali
         logger( 'Home, updateCoAuthors', 'this.newModel.co_authors', this.newModel.co_authors );
         this.panel.current._onShowCoAuthors();
     }

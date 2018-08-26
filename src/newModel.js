@@ -187,7 +187,7 @@ export default class newModel {
     getCoAuthors( selected_auth ){
 
         this.co_authors = [];
-
+        let co_authors_codes = [];
 
         let relations = null;
         let relationsRef = firebase.database().ref().child( consts.TABLE_RELATIONS );
@@ -197,51 +197,21 @@ export default class newModel {
             for( let relation in relations ){
                 let split = relation.split(/\s*\-\s*/g);
                 if( split[0] == selected_auth ){
-                    this.co_authors.push( split[1] )
+                    co_authors_codes.push( split[1] )
                 } else if( split[1] == selected_auth ){
-                    this.co_authors.push( split[0] )
+                    co_authors_codes.push( split[0] )
                 }
             }
-            logger( 'newModel, getCoAuthors', 'this.co_authors', this.co_authors );
+
+            for( let co_author_code in co_authors_codes ){
+                let authorsRef = firebase.database().ref().child( consts.TABLE_PERSONS ).child( co_authors_codes[co_author_code] );
+                authorsRef.on( 'value', snap => {
+                    this.co_authors[ co_authors_codes[co_author_code] ] = snap.val();
+                    window.dispatchEvent( this.EVENT_UPDATE_CO_AUTHORS );
+                });
+            }
 
         });
-        /*
-        // Highly inefficient!!
-        // stuff that should be done server side
-        let authors = null;
-        let authorsRef = firebase.database().ref().child( consts.TABLE_PUBS ).child( 'authors' );
-        authorsRef.on( 'value', snap => {
-
-            authors = snap.val();
-
-            let current_publications = null;
-            let current_publicationsRef = firebase.database().ref().child( consts.TABLE_PUBS ).child( 'authors' ).child( selected_auth ).child( 'projects' );
-            current_publicationsRef.on( 'value', snap => {
-
-                current_publications = snap.val();
-
-                for( let author in authors ){
-                    for( let project in authors[author].projects ){
-
-                        var is_coauthor = false;
-                        for( let publication in current_publications ) {
-                            if (authors[author].projects[project] == current_publications[publication] && author != selected_auth) {
-                                this.co_authors.push( author );
-                                is_coauthor = true;
-                                break;
-                            }
-                        }
-                        if( is_coauthor ){
-                            break;
-                        }
-                    }
-                }
-
-                window.dispatchEvent( this.EVENT_UPDATE_CO_AUTHORS );
-
-            });
-
-        });*/
 
     }
 

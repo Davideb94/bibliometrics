@@ -23,6 +23,10 @@ export default class Panel extends React.Component {
             author_surname: null,
             number_of_pubs: null,
             author_university: null,
+            co_authors: {
+                type: consts.TILE_TYPE_AUTHORS,
+                items: {}
+            }
 
         };
 
@@ -97,9 +101,26 @@ export default class Panel extends React.Component {
     _onShowCoAuthors(){
 
         this.setState({
-            showCoAuthors: !this.state.showCoAuthors
+            showCoAuthors: !this.state.showCoAuthors,
+            co_authors: {
+                type: consts.TILE_TYPE_AUTHORS,
+                items: this.model.co_authors
+            },
         });
         this.props.update_show_co_authors();
+
+    }
+
+    _renderTiles( data ){
+
+        let list = [];
+        logger( 'Panel, _renderTiles', 'data', data );
+
+        for( let item in data.items ){
+            list.push( this.tilesFactory.build( data.type, item, data.items[item] ) );
+        }
+
+        return list;
 
     }
 
@@ -110,7 +131,7 @@ export default class Panel extends React.Component {
             <section id={ 'panel' } className={ this.props.className }>
                 <div className={ this.state.showCoAuthors ? 'co_authors_layer open' : 'co_authors_layer' }>
                     <ul className={ this.state.showCoAuthors ? 'co_authors_list fade_in' : 'co_authors_list' }>
-                        { /*this._renderTiles( this.model._authors )*/ }
+                        { this._renderTiles( this.state.co_authors ) }
                     </ul>
                 </div>
 
