@@ -114,10 +114,11 @@ export default class Panel extends React.Component {
     _renderTiles( data ){
 
         let list = [];
-        logger( 'Panel, _renderTiles', 'data', data );
 
         for( let item in data.items ){
-            list.push( this.tilesFactory.build( data.type, item, data.items[item] ) );
+            if( data.items[item] !== undefined ){
+                list.push( this.tilesFactory.build( data.type, item, data.items[item] ) );
+            }
         }
 
         return list;

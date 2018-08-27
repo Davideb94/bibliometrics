@@ -203,13 +203,18 @@ export default class newModel {
                 }
             }
 
-            for( let co_author_code in co_authors_codes ){
-                let authorsRef = firebase.database().ref().child( consts.TABLE_PERSONS ).child( co_authors_codes[co_author_code] );
-                authorsRef.on( 'value', snap => {
-                    this.co_authors[ co_authors_codes[co_author_code] ] = snap.val();
-                    window.dispatchEvent( this.EVENT_UPDATE_CO_AUTHORS );
-                });
-            }
+            let authors = null;
+            let authorsRef = firebase.database().ref().child( consts.TABLE_PERSONS );
+            authorsRef.on( 'value', snap => {
+                authors = snap.val();
+
+                for( let co_author_code in co_authors_codes ){
+                    this.co_authors[ co_authors_codes[co_author_code] ] = authors[ co_authors_codes[co_author_code] ];
+                }
+                logger( 'newModel, getCoAuthors', 'this.co_authors', this.co_authors );
+
+                window.dispatchEvent( this.EVENT_UPDATE_CO_AUTHORS );
+            });
 
         });
 

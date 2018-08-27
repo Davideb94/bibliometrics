@@ -5,3 +5,7 @@
 .show{
     display: block !important;
 }
+
+.rotate_90{
+    transform: rotate(180deg);
+}

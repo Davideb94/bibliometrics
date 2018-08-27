@@ -123,7 +123,6 @@ export default class Home extends React.Component {
             publications: {},
             contentIsLoaded: false
         }, () =>{
-            logger( 'Home, updateSearch', 'this.state.keyword', this.state.keyword );
             this.newModel.getAuthors( this.state.keyword );
             this.newModel.getPublications( this.state.keyword );
         });
@@ -132,9 +131,7 @@ export default class Home extends React.Component {
 
     updateKeyword( keyword ){
 
-        logger( 'Home, updateKeyword', 'keyword: before', keyword );
         keyword = keyword.trim();
-        logger( 'Home, updateKeyword', 'keyword: after', keyword );
 
         this.setState({
             keyword: keyword
@@ -167,7 +164,6 @@ export default class Home extends React.Component {
     }
 
     updateCoAuthors(){
-        logger( 'Home, updateCoAuthors', 'this.newModel.co_authors', this.newModel.co_authors );
         this.panel.current._onShowCoAuthors();
     }
 
@@ -220,7 +216,9 @@ export default class Home extends React.Component {
         let list = [];
 
         for( let item in data.items ){
-            list.push( this.tilesFactory.build( data.type, item, data.items[item] ) );
+            if( data.items[item] !== undefined ){
+                list.push( this.tilesFactory.build( data.type, item, data.items[item] ) );
+            }
         }
 
         return list;
@@ -255,7 +253,7 @@ export default class Home extends React.Component {
                         </div>
                         <div onClick={ this.getCoAuthors.bind(this) } className={this.state.openPanel ? 'open_auth' : 'open_auth hide'}>
                             <p> {this.state.show_co_authors ? dictionary.hide_co_authors :  dictionary.show_co_authors} </p>
-                            <img src={ consts.IMG_DOWN_ARROW } />
+                            <img className={ this.state.show_co_authors ? 'rotate_90' : 'show' } src={ consts.IMG_DOWN_ARROW } />
                         </div>
                     </aside>
 
