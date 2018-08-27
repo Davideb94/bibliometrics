@@ -76,6 +76,14 @@
 
 }
 
+.tile.author .name_holder .name_holder_inner{
+
+    height: 60%;
+    display: flex;
+    align-items: center;
+
+}
+
 .tile.author .name_holder p{
 
     max-height: 100%;
@@ -88,33 +96,19 @@
 
 }
 
-.tile.author .name_holder .co-authors_holder{
+.name_holder .co_authors_inner{
 
-    max-height: 0;
-    max-width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    align-items: center;
-    margin-top: 5px;
-    overflow: hidden;
-    transition: max-height 150ms cubic-bezier( 0.4, 0.0, 0.2, 1 );
+    height: 0;
+    width: 100%;
+    transition: height 150ms cubic-bezier( 0.4, 0.0, 0.2, 1 );
 
 }
 
-.tile.author .name_holder .co-authors_holder.spread{
+.spread .name_holder .co_authors_inner{
 
-    max-height: 200%;
-    transition: max-height 200ms cubic-bezier( 0.4, 0.0, 0.2, 1 );
+    height: 40%;
+    transition: height 200ms cubic-bezier( 0.4, 0.0, 0.2, 1 );
 
-}
-
-.tile.author .name_holder .co-authors_holder img{
-
-    height: 20px;
-    width: auto;
-    margin-right: 10px;
-    border-radius: 50%;
 
 }
 
@@ -128,6 +122,13 @@
     justify-content: center;
     align-items: flex-end;
     padding: 0 20px;
+
+}
+.tile.author .university_holder .university{
+
+    height: 60%;
+    display: flex;
+    align-items: center;
 
 }
 
@@ -145,22 +146,30 @@
 
 .tile.author .university_holder .publication_types{
 
-    max-height: 0;
-    max-width: 100%;
+    height: 0;
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: right;
+    justify-content: flex-end;
     align-items: center;
-    margin-top: 5px;
+    margin-right: -20px;
     overflow: hidden;
-    transition: max-height 150ms cubic-bezier( 0.4, 0.0, 0.2, 1 );
+    transition: height 150ms cubic-bezier( 0.4, 0.0, 0.2, 1 );
+
+}
+
+.tile.author .university_holder .publication_types .publication_type{
+
+    height: 100%;
+    width: 33%;
+    background: pink;
 
 }
 
 .tile.author .university_holder .publication_types.spread {
 
-    max-height: 200%;
-    transition: max-height 200ms cubic-bezier( 0.4, 0.0, 0.2, 1 );
+    height: 40%;
+    transition: height 200ms cubic-bezier( 0.4, 0.0, 0.2, 1 );
 
 }
 

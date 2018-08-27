@@ -43,22 +43,22 @@ export default class Author extends React.Component {
                     <div className={ 'img_holder' }>
                         <img src={ this.props.image } />
                     </div>
-                    <div className={ 'name_holder' }>
-                        <p>{ this.props.name }</p>
-                        <div className={ this.state.isSpread ? 'co-authors_holder spread' : 'co-authors_holder' }>
-                            <img src={ this.props.image } />
-                            <img src={ this.props.image } />
-                            <img src={ this.props.image } />
+                    <div className={ this.state.isSpread ? 'name_holder spread' : 'name_holder' }>
+                        <div className={ 'name_holder_inner' }>
+                            <p>{ this.props.name }</p>
                         </div>
+                        <div className={ 'co_authors_inner' }></div>
                     </div>
                 </div>
                 <div className={ 'right_holder' }>
                     <div className={ 'university_holder' }>
-                        <p>{ this.props.university }</p>
+                        <div className={ 'university' }>
+                            <p>{ this.props.university }</p>
+                        </div>
                         <div className={ this.state.isSpread ? 'publication_types spread' : 'publication_types' }>
-                            <img src={ this.props.image } />
-                            <img src={ this.props.image } />
-                            <img src={ this.props.image } />
+                            <div className={ 'publication_type' }></div>
+                            <div className={ 'publication_type' }></div>
+                            <div className={ 'publication_type' }></div>
                         </div>
                     </div>
                 </div>
