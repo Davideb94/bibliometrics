@@ -26,8 +26,8 @@ export default class Home extends React.Component {
 
         this.panel = React.createRef();
         this.input = React.createRef();
-        this.tilesFactory = new tilesFactory( this._onOpenPanel, this );
         this.newModel = new newModel();
+        this.tilesFactory = new tilesFactory( this._onOpenPanel, this, this.newModel );
 
         this.state = {
 

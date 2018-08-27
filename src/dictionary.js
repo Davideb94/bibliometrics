@@ -11,10 +11,11 @@ const dictionary = new LocalizedStrings({
         search: 'Search',
         search_placeholder: 'Authors, publications...',
         publications: 'publications',
-        undefined_university: 'unknown university',
+        undefined_university: 'Insitute not specified',
         authors_not_found: 'No authors found with surname "',
         publications_not_found: 'No publications found titled "',
-        not_found_label: 'Please make sure your words are spelled correctly'
+        not_found_label: 'Please make sure your words are spelled correctly',
+        location_not_specified: 'Venue not specified',
 
     },
     it:{
@@ -26,10 +27,11 @@ const dictionary = new LocalizedStrings({
         search: 'Cerca',
         search_placeholder: 'Autori, publicazioni...',
         publications: 'publicazioni',
-        undefined_university: 'università sconosciuta',
+        undefined_university: 'Istituto non specificato',
         authors_not_found: 'Nessun autore trovato con cognome "',
         publications_not_found: 'Nessuna publicazione trovato intitolata "',
-        not_found_label: 'Assicurati di aver scritto correttamente ogni parola'
+        not_found_label: 'Assicurati di aver scritto correttamente ogni parola',
+        location_not_specified: 'Sede non specificata',
 
     }
 

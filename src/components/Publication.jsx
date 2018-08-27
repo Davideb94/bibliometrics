@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import consts from '../consts.js';
 import dictionary from '../dictionary.js';
+import types from '../publication_types.js';
+import logger from "../utils/logger";
 
 
 
@@ -14,10 +16,13 @@ export default class Publication extends React.Component {
         this.id = this.props.id;
         this.title = this.props.title;
         this.author = this.props.author;
+        this.venue = this.props.venue;
+        this.type = this.props.type;
 
         this.state = {
             isSpread: false
         }
+
     }
 
     spread(){
@@ -37,32 +42,31 @@ export default class Publication extends React.Component {
 
         }
 
+        let dynamic_style = {
+            background: types[ this.props.type ].color
+        };
+
         return (
             <li onClick={ this.spread.bind(this) } className={ this.state.isSpread ? "tile publication spread" : "tile publication" }>
                 <div className={ 'left_holder' }>
-                    <p className={ 'title' }>
-                        { this.props.title }
-                    </p>
-                    <div className={ 'pubblication_type' }>
-                        <div className={ 'chip' }>
-                            <p>
-                                { dictionary.article }
-                            </p>
-                        </div>
+                    <div className={ 'title' }>
+                        <p>
+                            { this.props.title }
+                        </p>
+                    </div>
+                    <div className={ 'pubblication_type' } style={ dynamic_style } >
+                        <p>
+                            { types[ this.props.type ].name }
+                        </p>
                     </div>
                 </div>
                 <div className={ 'right_holder' }>
-                    <p className={ 'author' }>
-                        { this.props.author }
-                    </p>
-                    <div className={ 'source' }>
-                        <span>
-                            <p>2012, Newspaper X</p>
-                        </span>
+                    <div className={ 'author' }>
+                        <p>{ this.props.author }</p>
                     </div>
-                </div>
-                <div onClick={ _openPublication } className={ this.state.isSpread ? 'button_open_publication spread' : 'button_open_publication' }>
-                    <img src={ consts.IMG_RIGHT_ARROW } />
+                    <div className={ 'source' }>
+                        <p>{ this.props.venue ? this.props.venue : dictionary.location_not_specified }</p>
+                    </div>
                 </div>
             </li>
         );
@@ -74,5 +78,7 @@ Publication.propTypes = {
     id: PropTypes.number,
     title: PropTypes.string,
     author: PropTypes.string,
-    type: PropTypes.string
+    type: PropTypes.string,
+    venue: PropTypes.string,
+    type: PropTypes.object,
 }
