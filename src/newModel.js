@@ -88,7 +88,9 @@ export default class newModel {
                                 let current_types = {};
                                 for (let i = 0; i < 3; i++) {
                                     let current_max = Object.keys(this.pubs_authors[author].types).reduce((a, b) => this.pubs_authors[author].types[a] > this.pubs_authors[author].types[b] ? a : b);
-                                    current_types[i] = this.types[current_max];
+                                    if( !this.pubs_authors[author].types[current_max] == 0 ){
+                                        current_types[i] = this.types[current_max];
+                                    }
                                     this.pubs_authors[author].types[current_max] = 0;
                                 }
 
@@ -121,7 +123,9 @@ export default class newModel {
                                 let current_types = {};
                                 for (let i = 0; i < 3; i++) {
                                     let current_max = Object.keys(this.pubs_authors[author].types).reduce((a, b) => this.pubs_authors[author].types[a] > this.pubs_authors[author].types[b] ? a : b);
-                                    current_types[i] = this.types[current_max];
+                                    if( !this.pubs_authors[author].types[current_max] == 0 ) {
+                                        current_types[i] = this.types[current_max];
+                                    }
                                     this.pubs_authors[author].types[current_max] = 0;
                                 }
 

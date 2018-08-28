@@ -75,13 +75,13 @@ export default class Author extends React.Component {
                             <p>{ this.props.university }</p>
                         </div>
                         <div className={ this.state.isSpread ? 'publication_types spread' : 'publication_types' }>
-                            <div className={ 'publication_type'  } style={ style_0 } >
+                            <div className={ this.props.types[0] ? 'publication_type' : 'hide' } style={ style_0 } >
                                 <p>{ this.props.types[0] ? this.props.types[0].name : '' }</p>
                             </div>
-                            <div className={ 'publication_type' } style={ style_1 } >
+                            <div className={ this.props.types[1] ? 'publication_type' : 'hide' } style={ style_1 } >
                                 <p>{ this.props.types[1] ? this.props.types[1].name : '' }</p>
                             </div>
-                            <div className={ 'publication_type' } style={ style_2 } >
+                            <div className={ this.props.types[2] ? 'publication_type' : 'hide' } style={ style_2 } >
                                 <p>{ this.props.types[2] ? this.props.types[2].name : '' }</p>
                             </div>
                         </div>
