@@ -2,6 +2,7 @@ import * as firebase from 'firebase';
 
 import consts from "./consts";
 import logger from './utils/logger.js';
+import types from './publication_types.js';
 
 
 export default class newModel {
@@ -21,7 +22,7 @@ export default class newModel {
 
         this._authors = {
             type: consts.TILE_TYPE_AUTHORS,
-            items: {}
+            items: {},
         };
 
         this._publications = {
@@ -40,6 +41,7 @@ export default class newModel {
         this.current_author_surname = null;
         this.current_number_of_pubs = null;
         this.current_author_university = null;
+        this.types = types;
 
         this.init();
     }
@@ -53,6 +55,7 @@ export default class newModel {
         this.getAuthors( null );
         this.getPublications( null );
 
+
         //-- sets listeners --//
 
 
@@ -62,28 +65,75 @@ export default class newModel {
         firebase.initializeApp( consts.FIREBASE_CONNECTION );
     }
 
+
     getAuthors( keyword ){
 
-        logger( 'newModel, getAuthor', 'keyword: ', keyword )
+        logger( 'newModel, getAuthor', 'this.pubs_authors: ', this.pubs_authors )
 
         if( keyword === undefined ){
             return;
         } else if( !keyword ){
 
-            let authors = firebase.database().ref().child( consts.TABLE_PERSONS ).limitToFirst( this.loaded_authors );
-            authors.on( 'value', snap => {
-                this._authors.items = snap.val();
-                window.dispatchEvent( this.EVENT_AUTHORS_DID_CHANGE );
-            } );
+            let pub_authorsRef = firebase.database().ref().child( consts.TABLE_PUBS ).child( 'authors' );
+            pub_authorsRef.on( 'value', snap => {
+                this.pubs_authors = snap.val();
+
+                let authors = firebase.database().ref().child( consts.TABLE_PERSONS ).limitToFirst( this.loaded_authors );
+                authors.on( 'value', snap => {
+                    this._authors.items = snap.val();
+
+                    for( let author in this._authors.items ){
+                        if( this.pubs_authors[ author ] ){
+
+                            let current_types = {};
+                            for( let i = 0; i < 3; i++ ){
+                                let current_max = Object.keys( this.pubs_authors[ author ].types ).reduce( (a, b) => this.pubs_authors[ author ].types[a] > this.pubs_authors[ author ].types[b] ? a : b );
+                                current_types[ i ] = this.types[ current_max ];
+                                this.pubs_authors[ author ].types[ current_max ] = 0;
+                            }
+
+                            this._authors.items[ author ].types = current_types;
+                            //this._authors.items[ author ].types = this.pubs_authors[ author ].types;
+                        } else{
+                            delete this._authors.items[ author ];
+                        }
+                    }
+
+                    window.dispatchEvent( this.EVENT_AUTHORS_DID_CHANGE );
+                } );
+            });
 
         } else{
 
-            let authors = firebase.database().ref().child( consts.TABLE_PERSONS ).orderByChild("surname").equalTo(keyword);
-            authors.on( 'value', snap => {
-                this._authors.items = snap.val();
-                logger( 'newModel, getAuthros', 'this._authors', this._authors );
-                window.dispatchEvent( this.EVENT_AUTHORS_DID_CHANGE );
-            } );
+
+            let pub_authorsRef = firebase.database().ref().child( consts.TABLE_PUBS ).child( 'authors' );
+            pub_authorsRef.on( 'value', snap => {
+                this.pubs_authors = snap.val();
+
+                let authors = firebase.database().ref().child(consts.TABLE_PERSONS).orderByChild("surname").equalTo(keyword);
+                authors.on('value', snap => {
+                    this._authors.items = snap.val();
+
+                    for( let author in this._authors.items ){
+                        if( this.pubs_authors[ author ] ){
+
+                            let current_types = {};
+                            for( let i = 0; i < 3; i++ ){
+                                let current_max = Object.keys( this.pubs_authors[ author ].types ).reduce( (a, b) => this.pubs_authors[ author ].types[a] > this.pubs_authors[ author ].types[b] ? a : b );
+                                current_types[ i ] = this.types[ current_max ];
+                                this.pubs_authors[ author ].types[ current_max ] = 0;
+                            }
+
+                            this._authors.items[ author ].types = current_types;
+                            //this._authors.items[ author ].types = this.pubs_authors[ author ].types;
+                        } else{
+                            delete this._authors.items[ author ];
+                        }
+                    }
+
+                    window.dispatchEvent(this.EVENT_AUTHORS_DID_CHANGE);
+                });
+            });
 
         }
 
