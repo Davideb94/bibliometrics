@@ -82,20 +82,20 @@ export default class newModel {
                 authors.on( 'value', snap => {
                     this._authors.items = snap.val();
 
-                    for( let author in this._authors.items ){
-                        if( this.pubs_authors[ author ] ){
+                    for (let author in this._authors.items) {
+                        if (this.pubs_authors[author]) {
+                            if( !this._authors.items[author].types ){
+                                let current_types = {};
+                                for (let i = 0; i < 3; i++) {
+                                    let current_max = Object.keys(this.pubs_authors[author].types).reduce((a, b) => this.pubs_authors[author].types[a] > this.pubs_authors[author].types[b] ? a : b);
+                                    current_types[i] = this.types[current_max];
+                                    this.pubs_authors[author].types[current_max] = 0;
+                                }
 
-                            let current_types = {};
-                            for( let i = 0; i < 3; i++ ){
-                                let current_max = Object.keys( this.pubs_authors[ author ].types ).reduce( (a, b) => this.pubs_authors[ author ].types[a] > this.pubs_authors[ author ].types[b] ? a : b );
-                                current_types[ i ] = this.types[ current_max ];
-                                this.pubs_authors[ author ].types[ current_max ] = 0;
+                                this._authors.items[author].types = current_types;
                             }
-
-                            this._authors.items[ author ].types = current_types;
-                            //this._authors.items[ author ].types = this.pubs_authors[ author ].types;
-                        } else{
-                            delete this._authors.items[ author ];
+                        } else {
+                            delete this._authors.items[author];
                         }
                     }
 
@@ -117,15 +117,16 @@ export default class newModel {
                     for( let author in this._authors.items ){
                         if( this.pubs_authors[ author ] ){
 
-                            let current_types = {};
-                            for( let i = 0; i < 3; i++ ){
-                                let current_max = Object.keys( this.pubs_authors[ author ].types ).reduce( (a, b) => this.pubs_authors[ author ].types[a] > this.pubs_authors[ author ].types[b] ? a : b );
-                                current_types[ i ] = this.types[ current_max ];
-                                this.pubs_authors[ author ].types[ current_max ] = 0;
-                            }
+                            if( !this._authors.items[author].types ) {
+                                let current_types = {};
+                                for (let i = 0; i < 3; i++) {
+                                    let current_max = Object.keys(this.pubs_authors[author].types).reduce((a, b) => this.pubs_authors[author].types[a] > this.pubs_authors[author].types[b] ? a : b);
+                                    current_types[i] = this.types[current_max];
+                                    this.pubs_authors[author].types[current_max] = 0;
+                                }
 
-                            this._authors.items[ author ].types = current_types;
-                            //this._authors.items[ author ].types = this.pubs_authors[ author ].types;
+                                this._authors.items[author].types = current_types;
+                            }
                         } else{
                             delete this._authors.items[ author ];
                         }
