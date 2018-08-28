@@ -258,17 +258,41 @@ export default class newModel {
                 }
             }
 
-            let authors = null;
-            let authorsRef = firebase.database().ref().child( consts.TABLE_PERSONS );
-            authorsRef.on( 'value', snap => {
-                authors = snap.val();
+            let pub_authorsRef = firebase.database().ref().child( consts.TABLE_PUBS ).child( 'authors' );
+            pub_authorsRef.on( 'value', snap => {
+                let pubs_co_authors = snap.val();
 
-                for( let co_author_code in co_authors_codes ){
-                    this.co_authors[ co_authors_codes[co_author_code] ] = authors[ co_authors_codes[co_author_code] ];
-                }
-                logger( 'newModel, getCoAuthors', 'this.co_authors', this.co_authors );
+                let authors = null;
+                let authorsRef = firebase.database().ref().child(consts.TABLE_PERSONS);
+                authorsRef.on('value', snap => {
+                    authors = snap.val();
 
-                window.dispatchEvent( this.EVENT_UPDATE_CO_AUTHORS );
+                    for (let co_author_code in co_authors_codes) {
+                        this.co_authors[co_authors_codes[co_author_code]] = authors[co_authors_codes[co_author_code]];
+                    }
+
+                    for (let author in this.co_authors) {
+                        if (pubs_co_authors[author]) {
+                            if( !this.co_authors[author].types ){
+                                let current_types = {};
+                                for (let i = 0; i < 3; i++) {
+                                    let current_max = Object.keys(pubs_co_authors[author].types).reduce((a, b) => pubs_co_authors[author].types[a] > pubs_co_authors[author].types[b] ? a : b);
+                                    if( !pubs_co_authors[author].types[current_max] == 0 ){
+                                        current_types[i] = this.types[current_max];
+                                    }
+                                    pubs_co_authors[author].types[current_max] = 0;
+                                }
+
+                                this.co_authors[author].types = current_types;
+                            }
+                        } else {
+                            delete this.co_authors[author];
+                        }
+                    }
+                    logger('newModel, getCoAuthors', 'this.co_authors', this.co_authors);
+
+                    window.dispatchEvent(this.EVENT_UPDATE_CO_AUTHORS);
+                });
             });
 
         });
