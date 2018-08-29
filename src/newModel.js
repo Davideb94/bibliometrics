@@ -299,6 +299,15 @@ export default class newModel {
 
     }
 
+    getFilteredPubs( from, to ){
+
+    }
+
+    removeFilters(){
+
+    }
+
+
     getAuthorUniversity( code ){
 
         this.current_author_university = null;

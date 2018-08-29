@@ -24,6 +24,9 @@ export default class Home extends React.Component {
 
         this.EVENT_ON_CLOSE_PANEL = new Event( consts.EVENT_ON_CLOSE_PANEL );
 
+        this.from = {};
+        this.to = {};
+
         this.panel = React.createRef();
         this.input = React.createRef();
         this.newModel = new newModel();
@@ -36,6 +39,9 @@ export default class Home extends React.Component {
             openPanel: false,
             show_co_authors: false,
             openSearch: false,
+            from_value: null,
+            to_value: null,
+            filter_is_set: false,
 
             //-- MODEL DATA --//
             selected_auth: null,
@@ -67,6 +73,10 @@ export default class Home extends React.Component {
      ****************************/
 
     componentDidMount(){
+
+        //-- get inputs from dom --//
+        this.from = document.getElementById( 'from' );
+        this.to = document.getElementById( 'to' );
 
         //-- checks when scroll reached bottom and triggers event --//
         let authors_holder = document.getElementById( 'authors_holder' );
@@ -211,6 +221,40 @@ export default class Home extends React.Component {
 
     }
 
+    updateFrom(){
+
+        this.setState({
+            from_value: this.from.value
+        });
+
+    }
+
+    updateTo(){
+
+        this.setState({
+            to_value: this.to.value
+        });
+
+    }
+
+    setFilterDates(){
+
+        this.newModel.getFilteredPubs( this.state.from_value, this.state.to_value );
+        this.setState({
+            filter_is_set: true
+        });
+
+    }
+
+    removeFilterDates(){
+
+        this.newModel.removeFilters();
+        this.setState({
+            filter_is_set: false
+        });
+
+    }
+
     _renderTiles( data ){
 
         let list = [];
@@ -254,6 +298,36 @@ export default class Home extends React.Component {
                         <div onClick={ this.getCoAuthors.bind(this) } className={this.state.openPanel ? 'open_auth' : 'open_auth hide'}>
                             <p> {this.state.show_co_authors ? dictionary.hide_co_authors :  dictionary.show_co_authors} </p>
                             <img className={ this.state.show_co_authors ? 'rotate_90' : 'show' } src={ consts.IMG_DOWN_ARROW } />
+                        </div>
+                        <div className={ this.state.active_tab ? 'date_field' : 'date_field date_field_hidden' }>
+                            <div className={ 'date_header' }>
+                                <img src={ consts.IMG_FILTER } />
+                                <p>{ dictionary.date_field }</p>
+                            </div>
+                            <div className={ 'date_body' }>
+                                <div className={ 'from_holder' }>
+                                    <div className={ 'from_header' }>
+                                        <p>{ dictionary.from }</p>
+                                    </div>
+                                    <div className={ 'from_body' }>
+                                        <input id={ 'from' } className={ 'from' } placeholder={ dictionary.from } onChange={ this.updateFrom.bind(this) } disabled={ this.state.filter_is_set }/>
+                                    </div>
+                                </div>
+                                <div className={ 'to_holder' }>
+                                    <div className={ 'to_header' }>
+                                        <p>{ dictionary.to }</p>
+                                    </div>
+                                    <div className={ 'to_body' }>
+                                        <input id={ 'to' } className={ 'to' } placeholder={ dictionary.to } onChange={ this.updateTo.bind(this) } disabled={ this.state.filter_is_set }/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={ this.state.from_value && this.state.to_value && !this.state.filter_is_set ? 'apply_filter spread' : 'apply_filter' } onClick={ this.setFilterDates.bind(this) }>
+                                <p className={ this.state.from_value && this.state.to_value && !this.state.filter_is_set ? '' : 'hide' }>{ dictionary.apply_filter }</p>
+                            </div>
+                            <div className={ this.state.filter_is_set ? 'remove_filter' : 'remove_filter hide' } onClick={ this.removeFilterDates.bind(this) }>
+                                <p className={ this.state.filter_is_set ? '' : 'hide' }>{ dictionary.remove_filter }</p>
+                            </div>
                         </div>
                     </aside>
 

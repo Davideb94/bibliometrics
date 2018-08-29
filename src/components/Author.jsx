@@ -41,9 +41,6 @@ export default class Author extends React.Component {
 
     render() {
 
-        logger( 'Author, render', 'this.props.name', this.props.name );
-        logger( 'Author, render', 'this.props.types', this.props.types );
-
         let style_0 = {
             background: this.props.types[0] ? this.props.types[0].color : ''
         };
