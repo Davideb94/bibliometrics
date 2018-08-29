@@ -96,8 +96,9 @@ export default class Home extends React.Component {
         publications_holder.addEventListener( consts.EVENT_SCROLL, () => {
 
             if ( publications_holder.offsetHeight + publications_holder.scrollTop - 95 - 15 >= publications_list.offsetHeight ) {
-                this.newModel.increaseLoadedPublications( this.state.keyword );
+                this.newModel.increaseLoadedPublications( this.state.keyword, this.state.from_value, this.state.to_value );
             }
+            
         });
 
     }
@@ -134,7 +135,12 @@ export default class Home extends React.Component {
             contentIsLoaded: false
         }, () =>{
             this.newModel.getAuthors( this.state.keyword );
-            this.newModel.getPublications( this.state.keyword );
+            //check if there are any filters
+            if( this.state.from_value && this.state.from_value ){
+                this.newModel.getFilteredPubs( this.state.from_value, this.state.from_value, this.state.keyword )
+            } else{
+                this.newModel.getPublications( this.state.keyword );
+            }
         });
 
     }
@@ -239,7 +245,7 @@ export default class Home extends React.Component {
 
     setFilterDates(){
 
-        this.newModel.getFilteredPubs( this.state.from_value, this.state.to_value );
+        this.newModel.getFilteredPubs( this.state.from_value, this.state.to_value, this.state.keyword );
         this.setState({
             filter_is_set: true
         });
@@ -248,7 +254,7 @@ export default class Home extends React.Component {
 
     removeFilterDates(){
 
-        this.newModel.removeFilters();
+        this.newModel.getPublications( this.state.keyword );
         this.setState({
             filter_is_set: false
         });
@@ -277,6 +283,10 @@ export default class Home extends React.Component {
 
     render() {
 
+        var style_hide_filter = {
+            opacity: 0.5
+        }
+
         if( this.state.selected_auth ){
 
             this.newModel.getAuthorName( this.state.selected_auth );
@@ -299,8 +309,8 @@ export default class Home extends React.Component {
                             <p> {this.state.show_co_authors ? dictionary.hide_co_authors :  dictionary.show_co_authors} </p>
                             <img className={ this.state.show_co_authors ? 'rotate_90' : 'show' } src={ consts.IMG_DOWN_ARROW } />
                         </div>
-                        <div className={ this.state.active_tab ? 'date_field' : 'date_field date_field_hidden' }>
-                            <div className={ 'date_header' }>
+                        <div className={ this.state.active_tab ? 'date_field' : 'date_field date_field_hidden' } style={ this.state.openSearch ? style_hide_filter : {} }>
+                            <div className={ 'date_header' } >
                                 <img src={ consts.IMG_FILTER } />
                                 <p>{ dictionary.date_field }</p>
                             </div>
@@ -310,7 +320,7 @@ export default class Home extends React.Component {
                                         <p>{ dictionary.from }</p>
                                     </div>
                                     <div className={ 'from_body' }>
-                                        <input id={ 'from' } className={ 'from' } placeholder={ dictionary.from } onChange={ this.updateFrom.bind(this) } disabled={ this.state.filter_is_set }/>
+                                        <input id={ 'from' } className={ 'from' } placeholder={ dictionary.from } onChange={ this.updateFrom.bind(this) } disabled={ this.state.filter_is_set || this.state.openSearch }/>
                                     </div>
                                 </div>
                                 <div className={ 'to_holder' }>
@@ -318,7 +328,7 @@ export default class Home extends React.Component {
                                         <p>{ dictionary.to }</p>
                                     </div>
                                     <div className={ 'to_body' }>
-                                        <input id={ 'to' } className={ 'to' } placeholder={ dictionary.to } onChange={ this.updateTo.bind(this) } disabled={ this.state.filter_is_set }/>
+                                        <input id={ 'to' } className={ 'to' } placeholder={ dictionary.to } onChange={ this.updateTo.bind(this) } disabled={ this.state.filter_is_set || this.state.openSearch  }/>
                                     </div>
                                 </div>
                             </div>

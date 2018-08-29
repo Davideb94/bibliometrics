@@ -24,7 +24,7 @@ export default class tilesFactory {
                 return <Author id={ item_id } name={ item.name + ' ' + item.surname } university={ dictionary.undefined_university } image={ consts.IMG_DEFAULT_AUTHOR } openPanel={ this.openPanel.bind(this.home_self) } types={ item.types } />;
 
             case consts.TILE_TYPE_PUBLICATIONS:
-                return <Publication id={ item_id } title={ item.title } author={ item.authors } venue={ item.venue } type={ item.type } />;
+                return <Publication id={ item_id } title={ item.title } author={ item.authors } venue={ item.venue } type={ item.type } year={ item.year } />;
 
             default:
                 return undefined;

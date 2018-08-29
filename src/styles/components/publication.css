@@ -163,6 +163,8 @@
 .tile.publication.spread .right_holder .source{
 
     height: calc(40% - 20px);
+    display: flex;
+    justify-content: flex-end;
     padding: 10px 0;
     transition: height 200ms cubic-bezier( 0.4, 0.0, 0.2, 1 );
 
@@ -171,7 +173,7 @@
 .tile.publication .right_holder .source p{
 
     height: 100%;
-    width: 100%;
+    width: 50%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -181,6 +183,23 @@
     color: rgba( 0, 0, 0, 0.8 );
 
 }
+
+.tile.publication .right_holder .source p.year{
+
+    height: 100%;
+    width: auto;
+    max-width: 50%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0;
+    margin-left: 10px;
+    font-size: 0.8em;
+    text-align: right;
+    color: rgba( 0, 0, 0, 0.5 );
+
+}
+
 
 .tile.author .button_open_panel{
 

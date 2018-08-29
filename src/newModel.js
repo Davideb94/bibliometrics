@@ -299,11 +299,40 @@ export default class newModel {
 
     }
 
-    getFilteredPubs( from, to ){
+    getFilteredPubs( from, to, keyword ){
 
-    }
+        if( keyword === undefined ){
+            return;
+        } else if( !keyword ){
 
-    removeFilters(){
+            this._publications.items = {};
+            let publications = firebase.database().ref().child( consts.TABLE_BIB ).limitToFirst( this.loaded_publications );
+            publications.on( 'value', snap => {
+                this._publications.items = snap.val();
+                for( let publication in this._publications.items ){
+                    if( this._publications.items[ publication ].year < from || this._publications.items[ publication ].year > to ){
+                        delete this._publications.items[ publication ];
+                    }
+                }
+                logger( 'newModel, getFilteredPubs', 'this._publications', this._publications );
+                window.dispatchEvent( this.EVENT_PUBLICATIONS_DID_CHANGE );
+            } );
+
+        } else{
+
+            this._publications.items = {};
+            let publications = firebase.database().ref().child( consts.TABLE_BIB ).orderByChild("title").equalTo( keyword );
+            publications.on( 'value', snap => {
+                this._publications.items = snap.val();
+                for( let publication in this._publications.items ){
+                    if( this._publications.items[ publication ].year < from || this._publications.items[ publication ].year > to ){
+                        delete this._publications.items[ publication ];
+                    }
+                }
+                window.dispatchEvent( this.EVENT_PUBLICATIONS_DID_CHANGE );
+            } );
+
+        }
 
     }
 
@@ -323,9 +352,14 @@ export default class newModel {
 
     }
 
-    increaseLoadedPublications( keyword ){
+    increaseLoadedPublications( keyword, from, to ){
         this.loaded_publications = this.loaded_publications + 10;
-        this.getPublications( keyword );
+
+        if( from && to ){
+            this.getFilteredPubs( from, to, keyword )
+        }else{
+            this.getPublications( keyword );
+        }
         window.dispatchEvent( new Event(consts.EVENT_PUBLICATIONS_DID_CHANGE) );
     }
 

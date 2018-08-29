@@ -99,8 +99,8 @@ Author.propTypes = {
     name: PropTypes.string,
     university: PropTypes.string,
     image: PropTypes.string,
+    types: PropTypes.object,
 
-    openPanel: PropTypes.func,
-    types: PropTypes.object
+    openPanel: PropTypes.func
 
 }

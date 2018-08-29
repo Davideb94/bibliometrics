@@ -66,6 +66,7 @@ export default class Publication extends React.Component {
                     </div>
                     <div className={ 'source' }>
                         <p>{ this.props.venue ? this.props.venue : dictionary.location_not_specified }</p>
+                        <p className={ 'year' }>{ this.props.year }</p>
                     </div>
                 </div>
             </li>
@@ -80,5 +81,5 @@ Publication.propTypes = {
     author: PropTypes.string,
     type: PropTypes.string,
     venue: PropTypes.string,
-    type: PropTypes.object,
+    year: PropTypes.year
 }
