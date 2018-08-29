@@ -56,6 +56,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-family: Headers;
 }
 
 .tile.publication .left_holder .pubblication_type{
@@ -87,11 +88,12 @@
     width: 100%;
     margin: 0;
     font-size: 0.8em;
+    font-family: Bodies;
     text-align: center;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: rgba(0, 0, 0, 0.8);
+    color: rgba(0, 0, 0, 0.5);
     opacity: 0;
 }
 
@@ -144,6 +146,8 @@
     text-overflow: ellipsis;
     width: 100%;
     overflow: hidden;
+    font-size: 0.8em;
+    font-family: Bodies;
 
 }
 
@@ -173,12 +177,14 @@
 .tile.publication .right_holder .source p{
 
     height: 100%;
-    width: 50%;
+    width: auto;
+    max-width: 50%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     margin: 0;
     font-size: 0.8em;
+    font-family: Bodies;
     text-align: right;
     color: rgba( 0, 0, 0, 0.8 );
 
@@ -187,13 +193,12 @@
 .tile.publication .right_holder .source p.year{
 
     height: 100%;
-    width: auto;
-    max-width: 50%;
+    width: 50%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     margin: 0;
-    margin-left: 10px;
+    margin-right: 10px;
     font-size: 0.8em;
     text-align: right;
     color: rgba( 0, 0, 0, 0.5 );
@@ -205,7 +210,7 @@
 
     height: 100%;
     width: 0;
-    background-color: var( --interactions-light-grey );
+    background-color: var( --interactions-green );
     transition: width 150ms cubic-bezier( 0.4, 0.0, 0.2, 1 );
 
 }

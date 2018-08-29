@@ -1,0 +1,9 @@
+@font-face {
+    font-family: Headers;
+    src: url( '../../assets/fonts/AirbnbCereal-Bold.ttf' );
+}
+
+@font-face{
+    font-family: Bodies;
+    src: url( '../../assets/fonts/AirbnbCereal-Book.ttf' );
+}

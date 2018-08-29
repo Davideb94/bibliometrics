@@ -2,7 +2,7 @@ const types = {
 
     "262" : {
         "name": "Articolo su rivista",
-        "color": "#EC644B"
+        "color": "#FFCC80"
     } ,
     "263" : {
         "name": "Recensione",
@@ -26,7 +26,7 @@ const types = {
     },
     "268" : {
         "name": "Contributo in volume (articolo o saggio)",
-        "color": "#D2527F"
+        "color": "#EF9A9A"
     },
     "269" : {
         "name": "Prefazione/postfazione",
@@ -46,7 +46,7 @@ const types = {
     },
     "273" : {
         "name": "Contributo in atti di convegno",
-        "color": "#4183D7"
+        "color": "#A5D6A7"
     },
     "274" : {
         "name": "Abstract in Atti di convegno",
@@ -146,7 +146,7 @@ const types = {
     },
     "298" : {
         "name": "Altro",
-        "color": "#89C4F4"
+        "color": "#B39DDB"
     }
 
 };

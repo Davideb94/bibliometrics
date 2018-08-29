@@ -65,8 +65,8 @@ export default class Publication extends React.Component {
                         <p>{ this.props.author }</p>
                     </div>
                     <div className={ 'source' }>
-                        <p>{ this.props.venue ? this.props.venue : dictionary.location_not_specified }</p>
                         <p className={ 'year' }>{ this.props.year }</p>
+                        <p>{ this.props.venue ? this.props.venue : dictionary.location_not_specified }</p>
                     </div>
                 </div>
             </li>

@@ -57,7 +57,9 @@ export default class Author extends React.Component {
             <li onClick={ this.spread.bind(this) } className={ this.state.isSpread ? "tile author spread" : "tile author" }>
                 <div className={ 'left_holder' }>
                     <div className={ 'img_holder' }>
-                        <img src={ this.props.image } />
+                        <div className={ 'img_wrapper' }>
+                            <img src={ this.props.image } />
+                        </div>
                     </div>
                     <div className={ this.state.isSpread ? 'name_holder spread' : 'name_holder' }>
                         <div className={ 'name_holder_inner' }>

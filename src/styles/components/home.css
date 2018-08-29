@@ -70,6 +70,7 @@ aside .search p{
 
     margin: 0;
     font-size: 1em;
+    font-family: Headers;
     color: rgba( 255, 255, 255, 0.8 );
     overflow: hidden;
 
@@ -114,6 +115,7 @@ aside .date_header p{
 
     margin: 0;
     font-size: 1em;
+    font-family: Headers;
     color: rgba( 255, 255, 255, 0.8 );
 
 }
@@ -155,6 +157,7 @@ aside .date_body .from_holder .from_header p{
 
     margin: 0;
     font-size: 0.8em;
+    font-family: Bodies;
     color: rgba( 255, 255, 255, 0.6 );
 
 }
@@ -165,6 +168,13 @@ aside .date_body .from_holder .from_body{
     width: 100%;
     display: flex;
     justify-content: flex-start;
+
+}
+
+aside .date_body .from_holder .from_body .from{
+
+    font-size: 0.8em;
+    font-family: Bodies;
 
 }
 
@@ -195,6 +205,7 @@ aside .date_body .to_holder .to_header p{
 
     margin: 0;
     font-size: 0.8em;
+    font-family: Bodies;
     color: rgba( 255, 255, 255, 0.6 );
 
 }
@@ -205,6 +216,20 @@ aside .date_body .to_holder .to_body{
     width: 100%;
     display: flex;
     justify-content: flex-end;
+
+}
+
+aside .date_body .to_holder .to_body .to{
+
+    font-size: 0.8em;
+    font-family: Bodies;
+
+}
+
+aside .date_body .to_holder .to_body p{
+
+    font-size: 0.8em;
+    font-family: Bodies;
 
 }
 
@@ -244,7 +269,7 @@ input:focus{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #009688;
+    background: var( --interactions-green );
     transition: height 70ms cubic-bezier( 0.4, 0.0, 0.2, 1 );
 
 }
@@ -267,6 +292,7 @@ input:focus{
 
     margin: 0;
     font-size: 0.8em;
+    font-family: Bodies;
     color: rgba( 255, 255, 255, 0.8 );
 
 }
@@ -278,18 +304,20 @@ input:focus{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #D84315;
+    background: var( --interactions-red );
 
 }
 
 .remove_filter:hover{
     cursor: pointer;
+    opacity: 0.8;
 }
 
 .remove_filter p{
 
     margin: 0;
     font-size: 0.8em;
+    font-family: Bodies;
     color: rgba( 255, 255, 255, 0.8 );
 
 }
@@ -335,6 +363,7 @@ aside .open_auth p{
 
     margin: 0;
     font-size: 1em;
+    font-family: Bodies;
     color: rgba( 255, 255, 255, 0.8 );
 
 }
@@ -407,6 +436,7 @@ main header .tab_btn p{
 
     margin: 0;
     font-size: 1em;
+    font-family: Headers;
     color: rgba( 0, 0, 0, 0.8 );
 
 }
@@ -455,6 +485,7 @@ main .not_found_holder .text p{
 main .not_found_holder .text .not_found_statement{
 
     font-size: 2em;
+    font-family: Headers;
     color: rgba( 0, 0, 0, 0.8 );
     text-align: center;
 
@@ -463,6 +494,7 @@ main .not_found_holder .text .not_found_statement{
 main .not_found_holder .text .not_found_label{
 
     font-size: 1em;
+    font-family: Bodies;
     color: rgba( 0, 0, 0, 0.6 );
 
 }

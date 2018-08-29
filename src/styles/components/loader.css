@@ -68,19 +68,19 @@
 
 @keyframes colors {
     0% {
-        stroke: #4285F4;
+        stroke: #0091EA;
     }
     25% {
-        stroke: #DE3E35;
+        stroke: #0091EA;
     }
     50% {
-        stroke: #F7C223;
+        stroke: #0091EA;
     }
     75% {
-        stroke: #1B9A59;
+        stroke: #0091EA;
     }
     100% {
-        stroke: #4285F4;
+        stroke: #0091EA;
     }
 }
 @-webkit-keyframes dash {

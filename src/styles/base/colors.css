@@ -18,9 +18,11 @@
 
     --interactions-light-blue: #40C4FF;
     --interactions-blue: #0091EA;
+    --interactions-green: #00BFA5;
     --interactions-yellow: #FFCC80;
     --interactions-pink: #F48FB1;
     --interactions-violet: #B39DDB;
+    --interactions-red: #E53935;
 }
 
 /** User Messages **/

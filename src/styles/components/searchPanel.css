@@ -19,6 +19,7 @@
     width: calc( 100% - 50px );
     padding-left: 50px;
     font-size: 5em;
+    font-family: Bodies;
     background: transparent;
     box-shadow: none;
     border: none;

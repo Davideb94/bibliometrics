@@ -68,8 +68,6 @@ export default class newModel {
 
     getAuthors( keyword ){
 
-        logger( 'newModel, getAuthor', 'this.pubs_authors: ', this.pubs_authors )
-
         if( keyword === undefined ){
             return;
         } else if( !keyword ){
@@ -289,7 +287,6 @@ export default class newModel {
                             delete this.co_authors[author];
                         }
                     }
-                    logger('newModel, getCoAuthors', 'this.co_authors', this.co_authors);
 
                     window.dispatchEvent(this.EVENT_UPDATE_CO_AUTHORS);
                 });
@@ -314,7 +311,6 @@ export default class newModel {
                         delete this._publications.items[ publication ];
                     }
                 }
-                logger( 'newModel, getFilteredPubs', 'this._publications', this._publications );
                 window.dispatchEvent( this.EVENT_PUBLICATIONS_DID_CHANGE );
             } );
 
