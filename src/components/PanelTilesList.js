@@ -1,8 +1,8 @@
 import React from 'react';
 
 import consts from "../consts";
-import logger from '../utils/logger.js';
-import Loader from "./Loader.jsx";
+import logger from '../utils/logger';
+import Loader from "./Loader";
 
 export default class PanelTilesList extends React.Component {
 

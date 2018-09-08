@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import consts from '../consts.js';
-import types from '../publication_types.js';
-import logger from "../utils/logger.js";
+import consts from '../consts';
+import types from '../publication_types';
+import logger from "../utils/logger";
 
 
 
@@ -97,7 +97,7 @@ export default class Author extends React.Component {
 
 Author.propTypes = {
 
-    id: PropTypes.number,
+    id: PropTypes.string,
     name: PropTypes.string,
     university: PropTypes.string,
     image: PropTypes.string,

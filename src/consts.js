@@ -56,4 +56,4 @@ const consts = {
 
 };
 
-module.exports = consts;
+export default consts;

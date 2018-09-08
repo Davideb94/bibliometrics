@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Switch, browserHistory } from 'react-router-dom';
-import * as firebase from 'firebase';
 
-import consts from './consts.js';
-import dictionary from './dictionary.js';
-
-import Home from './components/Home.jsx';
-import PageNotFound from './components/PageNotFound.jsx';
+import './styles/style.css';
+import dictionary from './dictionary';
+import consts from './consts';
 
 
-class App extends React.Component {
+import Home from './components/Home';
+
+import registerServiceWorker from './registerServiceWorker';
+
+class index extends React.Component {
 
     componentDidMount(){
         this._setLanguageToEnglish();
@@ -26,17 +26,7 @@ class App extends React.Component {
         this.setState({});
     }
 
-    render() {
-        return(
-            <Router history={ browserHistory }>
-                <Switch>
-                    <Route path="/" exact component={Home}/>
-                    <Route path="*" component={PageNotFound} />
-                </Switch>
-            </Router>
-        );
-    }
-
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Home />, document.getElementById('root'));
+registerServiceWorker();

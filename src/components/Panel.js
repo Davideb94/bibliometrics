@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import dictionary from '../dictionary.js';
-import tilesFactory from '../tilesFactory.jsx';
-import logger from '../utils/logger.js';
-import consts from '../consts.js';
+import dictionary from '../dictionary';
+import tilesFactory from '../tilesFactory';
+import logger from '../utils/logger';
+import consts from '../consts';
 
-import PanelTilesList from "./PanelTilesList.jsx";
+import PanelTilesList from "./PanelTilesList";
 
 export default class Panel extends React.Component {
 
@@ -44,7 +44,7 @@ export default class Panel extends React.Component {
         window.addEventListener( consts.EVENT_UPDATE_NUMBER_OF_PUBS, () => {
             this.updateNumberOfPubs( this.model )
         } );
-        
+
         window.addEventListener( consts.EVENT_UPDATE_AUTHOR_UNIVERSITY, () => {
             this.updateAuthorUniversity( this.model );
         } );
@@ -74,13 +74,13 @@ export default class Panel extends React.Component {
     }
 
     updateAuthorUniversity( model ){
-        
+
         this.setState({
             author_university: model.current_author_university
         });
-        
+
     }
-    
+
     updateNumberOfPubs( model ){
 
         this.setState({

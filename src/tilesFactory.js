@@ -1,12 +1,12 @@
 import React from 'react';
 
-import consts from './consts.js';
-import dictionary from './dictionary.js';
+import consts from './consts';
+import dictionary from './dictionary';
 import logger from "./utils/logger";
 
 
-import Author from './components/Author.jsx';
-import Publication from './components/Publication.jsx';
+import Author from './components/Author';
+import Publication from './components/Publication';
 
 export default class tilesFactory {
 

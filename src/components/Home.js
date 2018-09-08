@@ -1,15 +1,15 @@
 import React from 'react';
 
-import Panel from './Panel.jsx';
-import tilesFactory from '../tilesFactory.jsx';
-import SearchPanel from './SearchPanel.jsx';
-import Loader from "./Loader.jsx";
+import Panel from './Panel';
+import tilesFactory from '../tilesFactory';
+import SearchPanel from './SearchPanel';
+import Loader from "./Loader";
 
-import consts from '../consts.js';
-import dictionary from '../dictionary.js';
-import newModel from '../newModel.js';
-import isEmpty from '../utils/utils.js';
-import logger from '../utils/logger.js';
+import consts from '../consts';
+import dictionary from '../dictionary';
+import newModel from '../newModel';
+import isEmpty from '../utils/utils';
+import logger from '../utils/logger';
 
 
 export default class Home extends React.Component {
@@ -98,7 +98,7 @@ export default class Home extends React.Component {
             if ( publications_holder.offsetHeight + publications_holder.scrollTop - 95 - 15 >= publications_list.offsetHeight ) {
                 this.newModel.increaseLoadedPublications( this.state.keyword, this.state.from_value, this.state.to_value );
             }
-            
+
         });
 
     }

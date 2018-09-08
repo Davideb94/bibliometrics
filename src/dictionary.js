@@ -47,4 +47,4 @@ const dictionary = new LocalizedStrings({
 
 });
 
-module.exports = dictionary;
+export default dictionary;

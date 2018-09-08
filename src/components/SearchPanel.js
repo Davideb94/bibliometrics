@@ -1,7 +1,7 @@
 import React from "react";
-import dictionary from "../dictionary.js";
-import * as consts from "../consts";
-import logger from "../utils/logger";
+import dictionary from "../dictionary";
+import consts from "../consts.js";
+import logger from "../utils/logger.js";
 import PropTypes from "prop-types";
 
 
@@ -61,7 +61,7 @@ export default class SearchPanel extends React.Component {
 
         return (
             <div className={ this.props.className }>
-                <input id={ 'input_search' } type={ 'text' } placeholder={ dictionary.search_placeholder } autoComplete={ false }/>
+                <input id={ 'input_search' } type={ 'text' } placeholder={ dictionary.search_placeholder }/>
             </div>
         );
     }

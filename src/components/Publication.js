@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import consts from '../consts.js';
-import dictionary from '../dictionary.js';
-import types from '../publication_types.js';
+import consts from '../consts';
+import dictionary from '../dictionary';
+import types from '../publication_types';
 import logger from "../utils/logger";
 
 
@@ -76,10 +76,10 @@ export default class Publication extends React.Component {
 }
 
 Publication.propTypes = {
-    id: PropTypes.number,
+    id: PropTypes.string,
     title: PropTypes.string,
     author: PropTypes.string,
     type: PropTypes.string,
     venue: PropTypes.string,
-    year: PropTypes.year
+    year: PropTypes.string
 }
