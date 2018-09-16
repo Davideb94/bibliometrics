@@ -187,6 +187,18 @@ export default class Home extends React.Component {
         this.newModel.getCoAuthors( this.state.selected_auth );
     }
 
+    onSearchClick(){
+
+        if( this.state.openSearch ){
+            this.setState({
+                keyword: null
+            });
+            this.updateSearch();
+        }
+        this._onOpenSearch();
+
+    }
+
     _onOpenSearch(){
 
         this.input.current.giveFocus();
@@ -300,7 +312,7 @@ export default class Home extends React.Component {
             <section id={ "home" } className={ "container" }>
                 <div className={ "container main_container" }>
                     <aside>
-                        <div onClick={ this._onOpenSearch.bind(this) } className={this.state.openPanel ? 'search hide' : 'search'}>
+                        <div onClick={ this.onSearchClick.bind(this) } className={this.state.openPanel ? 'search hide' : 'search'}>
                             <img className={ this.state.openSearch ? 'show' : 'hide' } src={ consts.IMG_CLOSE_SEARCH } />
                             <img className={ this.state.openSearch ? 'hide' : 'show' } src={ consts.IMG_SEARCH } />
                             <p>{ this.state.keyword ? this.state.keyword : dictionary.search }</p>
