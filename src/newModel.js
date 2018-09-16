@@ -148,7 +148,7 @@ export default class newModel {
 
             let publications = firebase.database().ref().child( consts.TABLE_BIB ).limitToFirst( this.loaded_publications );
             publications.on( 'value', snap => {
-                this._publications.items = snap.val();
+                this._publications.items = this.sortPubsByYear( snap.val() );
                 window.dispatchEvent( this.EVENT_PUBLICATIONS_DID_CHANGE );
             } );
 
@@ -161,6 +161,31 @@ export default class newModel {
             } );
 
         }
+
+    }
+
+    sortPubsByYear( items ){
+        logger( 'newModel, sortPubsByYear', 'items', items );
+
+        let ordered = [];
+        let array_ordered = {};
+        for ( let item in items ) {
+            if (items.hasOwnProperty(item)) {
+                ordered.push({
+                    'value' : items[item]
+                });
+            }
+        }
+        ordered.sort(function(a, b) {
+            return b.value.year - a.value.year;
+        });
+
+        for( let item in ordered ){
+            array_ordered[ item ] = ordered[ item ].value;
+        }
+
+        logger( 'newModel, sortPubsByYear', 'ordered', array_ordered );
+        return array_ordered;
 
     }
 
