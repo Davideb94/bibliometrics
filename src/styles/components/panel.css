@@ -41,7 +41,7 @@
 
 .header{
 
-    height: 20%;
+    height: 150px;
     width: calc( 100% - 390px );
     display: flex;
     flex-direction: row;
@@ -110,7 +110,7 @@
 
 #panel .body{
 
-    height: 80%;
+    height: calc(100% - 200px);
     width: calc( 100% - 330px );
     display: flex;
     justify-content: center;
