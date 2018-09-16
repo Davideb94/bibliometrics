@@ -139,9 +139,9 @@
 
     display: -webkit-box;
     max-width: 100%;
-    height: 2.3em;
+    height: 3em;
     margin: 0 auto;
-    line-height: 0.8em;
+    line-height: 3em;
     -webkit-line-clamp: 3;
     /* autoprefixer: off */
     -webkit-box-orient: vertical;
@@ -150,7 +150,7 @@
     text-overflow: ellipsis;
     width: 100%;
     overflow: hidden;
-    font-size: 0.8em;
+    font-size: 1em;
     font-family: Bodies;
 
 }
