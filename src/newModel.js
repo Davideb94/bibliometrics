@@ -58,13 +58,11 @@ export default class newModel {
 
         //-- sets listeners --//
 
-
     }
 
     _connect(){
         firebase.initializeApp( consts.FIREBASE_CONNECTION );
     }
-
 
     getAuthors( keyword ){
 
@@ -216,6 +214,16 @@ export default class newModel {
 
     }
 
+    getAuthorUniversity( code ){
+
+        let uniRef = firebase.database().ref().child( consts.TABLE_PERSONS ).child( code ).child( 'institute' );
+        uniRef.on( 'value', snap => {
+            this.current_author_university = snap.val();
+            window.dispatchEvent( this.EVENT_UPDATE_AUTHOR_UNIVERSITY );
+        } );
+
+    }
+
     getNumberOfPublications( code ){
 
         let projects = [];
@@ -329,14 +337,6 @@ export default class newModel {
             } );
 
         }
-
-    }
-
-
-    getAuthorUniversity( code ){
-
-        this.current_author_university = null;
-        window.dispatchEvent( this.EVENT_UPDATE_AUTHOR_UNIVERSITY );
 
     }
 
